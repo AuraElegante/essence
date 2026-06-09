@@ -1,0 +1,3602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ESSENCE — Estilo & Lujo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400&family=Montserrat:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════════════════
+   ESSENCE — LUXURY PLATFORM
+   Paleta: #004B3E | #D4AF37 | #7D756D | #F7F5F2 | #1E1E1E
+   ═══════════════════════════════════════════════════════ */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+:root{
+  /* Brand Colors */
+  --verde:#004B3E;
+  --verde-light:#005c4d;
+  --verde-dark:#003328;
+  --dorado:#D4AF37;
+  --dorado-soft:rgba(212,175,55,.15);
+  --dorado-glow:rgba(212,175,55,.08);
+  --topo:#7D756D;
+  --perla:#F7F5F2;
+  --marfil:#EFEAE3;
+  --carbon:#1E1E1E;
+  --blanco:#ffffff;
+  /* Backoffice */
+  --bo-bg:#0a0c0b;
+  --bo-surface:#111412;
+  --bo-surface2:#181c1a;
+  --bo-surface3:#1e2420;
+  --bo-border:#1e2820;
+  --bo-border2:#263028;
+  --bo-text:#d8e0da;
+  --bo-muted:#748070;
+  /* Typography */
+  --font-serif:'Cormorant Garamond',serif;
+  --font-display:'Bodoni Moda',serif;
+  --font-sans:'Montserrat',sans-serif;
+  --font-head:'Syne',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  /* Spacing/Radius */
+  --r:6px;--r-md:10px;--r-lg:16px;
+  --shadow:0 4px 24px rgba(0,0,0,.12);
+  --shadow-lg:0 12px 48px rgba(0,0,0,.18);
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--topo);border-radius:10px;opacity:.4}
+
+/* ════════════════════════════════
+   LAYOUT PRINCIPAL
+   ════════════════════════════════ */
+body{font-family:var(--font-sans);background:var(--perla);color:var(--carbon);overflow-x:hidden;font-size:14px}
+.layer{display:none}
+.layer.active{display:block}
+
+/* ════════════════════════════════
+   ██ FRONTEND PÚBLICO
+   ════════════════════════════════ */
+
+/* ── NAVBAR ── */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 48px;height:72px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:transparent;
+  transition:background .4s, backdrop-filter .4s, box-shadow .4s;
+}
+#navbar.scrolled{
+  background:rgba(247,245,242,.92);
+  backdrop-filter:blur(20px);
+  box-shadow:0 1px 0 rgba(0,75,62,.08);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;text-decoration:none;
+}
+.nav-logo-icon{width:32px;height:32px}
+.nav-logo-text{
+  font-family:var(--font-display);font-size:20px;font-weight:700;
+  color:var(--verde);letter-spacing:3px;
+}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{
+  font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--carbon);text-decoration:none;
+  transition:color .2s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;
+  background:var(--dorado);transition:width .3s;
+}
+.nav-links a:hover{color:var(--verde)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.btn-nav{
+  padding:9px 22px;border:1px solid var(--verde);border-radius:2px;
+  font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--verde);background:transparent;cursor:pointer;
+  text-decoration:none;transition:all .25s;
+}
+.btn-nav:hover{background:var(--verde);color:var(--perla)}
+.btn-nav.filled{background:var(--verde);color:var(--perla)}
+.btn-nav.filled:hover{background:var(--verde-dark)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:1.5px;background:var(--carbon);transition:.3s}
+
+/* ── HERO ── */
+#hero{
+  height:100vh;min-height:680px;
+  position:relative;overflow:hidden;
+  background:var(--verde-dark);
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 80% at 70% 50%, rgba(0,75,62,.6) 0%, transparent 70%),
+    linear-gradient(135deg, #001f19 0%, #004B3E 40%, #003328 100%);
+}
+.hero-pattern{
+  position:absolute;inset:0;opacity:.04;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(212,175,55,1) 59px, rgba(212,175,55,1) 60px),
+    repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(212,175,55,1) 59px, rgba(212,175,55,1) 60px);
+}
+.hero-content{
+  position:relative;z-index:2;text-align:center;
+  max-width:900px;padding:0 24px;
+}
+.hero-eyebrow{
+  font-size:10px;font-weight:700;letter-spacing:5px;text-transform:uppercase;
+  color:var(--dorado);margin-bottom:28px;
+  opacity:0;animation:fadeUp .8s .2s forwards;
+}
+.hero-eyebrow span{display:inline-block;width:40px;height:1px;background:var(--dorado);vertical-align:middle;margin:0 12px}
+.hero-title{
+  font-family:var(--font-display);
+  font-size:clamp(52px,8vw,110px);
+  font-weight:400;line-height:.95;
+  color:var(--perla);letter-spacing:6px;
+  opacity:0;animation:fadeUp .9s .4s forwards;
+}
+.hero-title em{
+  font-style:italic;color:var(--dorado);display:block;
+  font-size:clamp(32px,5vw,68px);letter-spacing:8px;
+}
+.hero-sub{
+  font-size:12px;font-weight:300;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(247,245,242,.55);margin:28px 0 48px;
+  opacity:0;animation:fadeUp .8s .6s forwards;
+}
+.hero-ctas{
+  display:flex;flex-wrap:wrap;gap:14px;justify-content:center;
+  opacity:0;animation:fadeUp .8s .8s forwards;
+}
+.btn-hero-primary{
+  padding:14px 36px;background:var(--dorado);
+  font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--carbon);border:none;border-radius:2px;cursor:pointer;
+  transition:all .3s;text-decoration:none;display:inline-block;
+}
+.btn-hero-primary:hover{background:#b8961e;transform:translateY(-2px);box-shadow:0 8px 32px rgba(212,175,55,.4)}
+.btn-hero-outline{
+  padding:14px 36px;border:1px solid rgba(247,245,242,.3);
+  font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--perla);background:transparent;border-radius:2px;cursor:pointer;
+  transition:all .3s;text-decoration:none;display:inline-block;
+}
+.btn-hero-outline:hover{border-color:var(--dorado);color:var(--dorado)}
+.hero-scroll{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:rgba(247,245,242,.35);font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  animation:pulse 2s infinite;
+}
+.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--dorado),transparent)}
+
+/* ── SECTIONS GENERAL ── */
+.section{padding:100px 0}
+.container{max-width:1200px;margin:0 auto;padding:0 48px}
+.section-label{
+  font-size:10px;font-weight:700;letter-spacing:5px;text-transform:uppercase;
+  color:var(--dorado);margin-bottom:16px;display:flex;align-items:center;gap:12px;
+}
+.section-label::before{content:'';flex:0 0 32px;height:1px;background:var(--dorado)}
+.section-title{
+  font-family:var(--font-display);
+  font-size:clamp(32px,5vw,58px);
+  font-weight:400;line-height:1;
+  color:var(--verde);letter-spacing:2px;
+}
+.section-title em{font-style:italic;color:var(--dorado)}
+.section-desc{
+  font-size:13px;line-height:1.8;color:var(--topo);
+  max-width:520px;margin-top:16px;font-weight:300;letter-spacing:.5px;
+}
+
+/* ── CEO SECTION ── */
+#ceo{background:var(--carbon);overflow:hidden}
+.ceo-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:680px}
+.ceo-image{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg, #0d1a18, #004B3E);
+}
+.ceo-image-frame{
+  width:100%;height:100%;
+  background:
+    linear-gradient(160deg, rgba(0,75,62,.3) 0%, rgba(0,0,0,.4) 100%),
+    url('https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=800&q=80') center/cover no-repeat;
+  min-height:680px;
+}
+.ceo-image-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:40px;
+  background:linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 100%);
+}
+.ceo-image-quote{
+  font-family:var(--font-serif);font-size:18px;font-style:italic;
+  color:var(--perla);line-height:1.5;opacity:.85;
+}
+.ceo-content{
+  padding:80px 64px;display:flex;flex-direction:column;justify-content:center;
+}
+.ceo-role{
+  font-size:10px;font-weight:700;letter-spacing:5px;text-transform:uppercase;
+  color:var(--dorado);margin-bottom:8px;
+}
+.ceo-name{
+  font-family:var(--font-display);
+  font-size:48px;font-weight:400;color:var(--perla);
+  letter-spacing:3px;line-height:1;margin-bottom:24px;
+}
+.ceo-bio{
+  font-size:13px;line-height:1.9;color:rgba(247,245,242,.6);
+  font-weight:300;margin-bottom:32px;letter-spacing:.3px;
+}
+.ceo-stats{display:flex;gap:40px;margin-bottom:40px}
+.ceo-stat-n{
+  font-family:var(--font-display);font-size:36px;font-weight:400;
+  color:var(--dorado);line-height:1;
+}
+.ceo-stat-l{
+  font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(247,245,242,.4);margin-top:4px;
+}
+.ceo-signature{
+  font-family:var(--font-serif);font-size:28px;font-style:italic;
+  color:var(--dorado);opacity:.7;
+}
+
+/* ── SERVICIOS ── */
+#servicios{background:var(--marfil)}
+.servicios-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:rgba(0,75,62,.08);margin-top:64px;
+  border:1px solid rgba(0,75,62,.08);
+}
+.servicio-card{
+  background:var(--marfil);padding:48px 40px;
+  transition:all .35s;cursor:pointer;position:relative;overflow:hidden;
+}
+.servicio-card::before{
+  content:'';position:absolute;inset:0;
+  background:var(--verde);transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);
+  z-index:0;
+}
+.servicio-card:hover::before{transform:translateY(0)}
+.servicio-card>*{position:relative;z-index:1}
+.servicio-card:hover .servicio-num{color:rgba(212,175,55,.4)}
+.servicio-card:hover .servicio-title{color:var(--perla)}
+.servicio-card:hover .servicio-desc{color:rgba(247,245,242,.65)}
+.servicio-card:hover .servicio-cta{color:var(--dorado);border-color:var(--dorado)}
+.servicio-num{
+  font-family:var(--font-display);font-size:13px;font-weight:400;
+  color:var(--dorado);letter-spacing:3px;margin-bottom:24px;
+  transition:color .3s;
+}
+.servicio-icon{
+  width:44px;height:44px;margin-bottom:24px;
+  display:flex;align-items:center;justify-content:center;
+}
+.servicio-icon svg{width:32px;height:32px;color:var(--verde);transition:color .3s}
+.servicio-card:hover .servicio-icon svg{color:var(--dorado)}
+.servicio-title{
+  font-family:var(--font-serif);font-size:22px;font-weight:500;
+  color:var(--verde);letter-spacing:1px;margin-bottom:14px;
+  transition:color .3s;
+}
+.servicio-desc{
+  font-size:12px;line-height:1.8;color:var(--topo);
+  font-weight:300;margin-bottom:28px;transition:color .3s;
+}
+.servicio-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--verde);border-bottom:1px solid var(--verde);
+  padding-bottom:2px;cursor:pointer;transition:all .3s;
+}
+
+/* ── TRANSFORMACIONES ── */
+#transformaciones{background:var(--perla)}
+.transform-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;margin-top:64px}
+.transform-card{position:relative;overflow:hidden;cursor:pointer;border-radius:2px}
+.transform-before-after{
+  display:grid;grid-template-columns:1fr 1fr;gap:2px;
+  height:360px;
+}
+.transform-side{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg, #c8c0b8, #a8a09a);
+}
+.transform-side img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%)}
+.transform-label{
+  position:absolute;bottom:12px;left:12px;
+  font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--perla);background:rgba(0,0,0,.5);
+  padding:4px 10px;border-radius:2px;
+}
+.transform-info{padding:20px 0}
+.transform-name{
+  font-family:var(--font-serif);font-size:18px;font-weight:500;
+  color:var(--verde);margin-bottom:6px;
+}
+.transform-meta{font-size:11px;color:var(--topo);letter-spacing:1px}
+.transform-stars{color:var(--dorado);font-size:13px;margin-top:6px}
+
+/* ── BOUTIQUE ── */
+#boutique{background:var(--carbon);padding:100px 0}
+.boutique-header{text-align:center;margin-bottom:64px}
+.boutique-header .section-title{color:var(--perla)}
+.boutique-header .section-label{justify-content:center}
+.boutique-header .section-label::before{content:none}
+.boutique-header .section-label::after{content:'';flex:0 0 32px;height:1px;background:var(--dorado)}
+.boutique-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(247,245,242,.04)}
+.product-card{
+  background:var(--carbon);padding:0;cursor:pointer;
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.product-card:hover{background:#161614}
+.product-img{
+  aspect-ratio:3/4;overflow:hidden;position:relative;
+  background:linear-gradient(135deg, #1e1c1a, #2a2826);
+}
+.product-img-inner{
+  width:100%;height:100%;
+  background:center/cover no-repeat;
+  transition:transform .6s cubic-bezier(.4,0,.2,1);
+}
+.product-card:hover .product-img-inner{transform:scale(1.06)}
+.product-badge{
+  position:absolute;top:16px;left:16px;
+  font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 10px;border-radius:2px;
+}
+.product-badge.new{background:var(--verde);color:var(--perla)}
+.product-badge.sale{background:var(--dorado);color:var(--carbon)}
+.product-wishlist{
+  position:absolute;top:12px;right:12px;
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(30,30,30,.7);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:.2s;opacity:0;
+}
+.product-card:hover .product-wishlist{opacity:1}
+.product-wishlist svg{width:14px;height:14px;color:var(--perla)}
+.product-info{padding:20px 16px}
+.product-category{
+  font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--topo);margin-bottom:6px;
+}
+.product-name{
+  font-family:var(--font-serif);font-size:16px;font-weight:400;
+  color:var(--perla);margin-bottom:10px;letter-spacing:.5px;
+}
+.product-pricing{display:flex;align-items:center;gap:10px}
+.product-price{
+  font-family:var(--font-sans);font-size:15px;font-weight:600;
+  color:var(--dorado);
+}
+.product-price-old{
+  font-size:12px;color:var(--topo);text-decoration:line-through;
+}
+
+/* ── CURSOS ── */
+#cursos{background:var(--marfil)}
+.cursos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.curso-card{
+  background:var(--blanco);border-radius:2px;overflow:hidden;
+  transition:transform .3s,box-shadow .3s;cursor:pointer;
+}
+.curso-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,75,62,.12)}
+.curso-img{
+  aspect-ratio:16/9;overflow:hidden;
+  background:linear-gradient(135deg, #004B3E, #003328);
+  position:relative;
+}
+.curso-img-inner{
+  width:100%;height:100%;
+  background:center/cover no-repeat;
+  transition:transform .5s;
+}
+.curso-card:hover .curso-img-inner{transform:scale(1.05)}
+.curso-tag{
+  position:absolute;top:12px;left:12px;
+  font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 10px;border-radius:2px;
+}
+.curso-tag.live{background:rgba(212,175,55,.9);color:var(--carbon)}
+.curso-tag.online{background:rgba(0,75,62,.85);color:var(--perla)}
+.curso-info{padding:24px}
+.curso-meta{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:10px;color:var(--topo);margin-bottom:10px;letter-spacing:1px;
+}
+.curso-title{
+  font-family:var(--font-serif);font-size:20px;font-weight:500;
+  color:var(--verde);margin-bottom:10px;
+}
+.curso-desc{font-size:12px;line-height:1.7;color:var(--topo);font-weight:300;margin-bottom:18px}
+.curso-footer{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 24px;border-top:1px solid var(--marfil);
+}
+.curso-price{
+  font-family:var(--font-sans);font-size:18px;font-weight:700;
+  color:var(--verde);
+}
+.btn-curso{
+  padding:8px 18px;background:var(--verde);
+  font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--perla);border:none;border-radius:2px;cursor:pointer;transition:.25s;
+}
+.btn-curso:hover{background:var(--verde-dark)}
+
+/* ── FILOSOFÍA ── */
+#filosofia{background:var(--verde);padding:120px 0}
+.filosofia-inner{max-width:800px;margin:0 auto;text-align:center}
+.filosofia-title{
+  font-family:var(--font-display);
+  font-size:clamp(36px,5vw,64px);font-weight:400;
+  color:var(--perla);letter-spacing:3px;line-height:1.1;
+  margin-bottom:32px;
+}
+.filosofia-title em{font-style:italic;color:var(--dorado)}
+.filosofia-text{
+  font-size:14px;line-height:2;color:rgba(247,245,242,.7);
+  font-weight:300;letter-spacing:.5px;margin-bottom:48px;
+}
+.filosofia-pillars{display:flex;justify-content:center;gap:64px;flex-wrap:wrap}
+.filosofia-pillar{text-align:center}
+.filosofia-pillar-icon{
+  width:48px;height:48px;border:1px solid rgba(212,175,55,.3);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;
+}
+.filosofia-pillar-icon svg{width:22px;height:22px;color:var(--dorado)}
+.filosofia-pillar-name{
+  font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(247,245,242,.55);
+}
+
+/* ── TESTIMONIOS ── */
+#testimonios{background:var(--perla);padding:100px 0}
+.testimonios-track{
+  display:flex;gap:24px;overflow-x:auto;padding:0 48px 24px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.testimonios-track::-webkit-scrollbar{display:none}
+.testimonio-card{
+  flex:0 0 380px;background:var(--blanco);
+  padding:40px;border-radius:2px;
+  border-top:2px solid var(--dorado);
+}
+.testimonio-stars{color:var(--dorado);font-size:14px;margin-bottom:20px}
+.testimonio-text{
+  font-family:var(--font-serif);font-size:17px;font-style:italic;
+  color:var(--carbon);line-height:1.65;margin-bottom:24px;
+}
+.testimonio-author{display:flex;align-items:center;gap:14px}
+.testimonio-avatar{
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg, var(--verde), var(--verde-dark));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:16px;color:var(--dorado);font-weight:500;
+}
+.testimonio-name{font-size:12px;font-weight:600;color:var(--carbon);letter-spacing:.5px}
+.testimonio-role{font-size:10px;color:var(--topo);margin-top:2px;letter-spacing:1px}
+
+/* ── BLOG ── */
+#blog{background:var(--marfil);padding:100px 0}
+.blog-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:2px;background:rgba(0,75,62,.06);
+  margin-top:64px;
+}
+.blog-card{
+  background:var(--marfil);overflow:hidden;cursor:pointer;position:relative;
+}
+.blog-card.featured{grid-row:1/3}
+.blog-card-img{
+  aspect-ratio:4/3;overflow:hidden;
+  background:linear-gradient(135deg, #c0b8b0, #a09890);
+}
+.blog-card.featured .blog-card-img{aspect-ratio:auto;height:440px}
+.blog-card-img-inner{
+  width:100%;height:100%;
+  background:center/cover no-repeat;
+  transition:transform .5s;
+}
+.blog-card:hover .blog-card-img-inner{transform:scale(1.05)}
+.blog-card-info{padding:24px}
+.blog-card.featured .blog-card-info{padding:32px}
+.blog-cat{
+  font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--dorado);margin-bottom:10px;
+}
+.blog-title{
+  font-family:var(--font-serif);
+  font-size:18px;font-weight:500;color:var(--verde);line-height:1.35;
+  margin-bottom:8px;
+}
+.blog-card.featured .blog-title{font-size:26px}
+.blog-date{font-size:10px;color:var(--topo);letter-spacing:1px}
+
+/* ── LEAD FORM ── */
+#leads{
+  background:var(--carbon);padding:120px 0;
+  position:relative;overflow:hidden;
+}
+.leads-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,75,62,.3) 0%, transparent 70%);
+}
+.leads-inner{position:relative;z-index:1;text-align:center}
+.leads-title{
+  font-family:var(--font-display);
+  font-size:clamp(32px,5vw,58px);font-weight:400;
+  color:var(--perla);letter-spacing:3px;margin-bottom:12px;
+}
+.leads-title em{font-style:italic;color:var(--dorado)}
+.leads-sub{
+  font-size:12px;font-weight:300;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(247,245,242,.45);margin-bottom:56px;
+}
+.lead-form{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  max-width:700px;margin:0 auto;
+  background:rgba(247,245,242,.06);
+  border:1px solid rgba(247,245,242,.06);
+}
+.lead-form-field{
+  background:rgba(30,30,30,.8);
+  padding:18px 24px;border:none;outline:none;
+  font-family:var(--font-sans);font-size:12px;font-weight:400;letter-spacing:.5px;
+  color:var(--perla);
+  transition:background .2s;
+}
+.lead-form-field::placeholder{
+  color:rgba(247,245,242,.3);letter-spacing:1px;font-size:11px;text-transform:uppercase;
+}
+.lead-form-field:focus{background:rgba(0,75,62,.2)}
+.lead-form-field.full{grid-column:1/3}
+.btn-lead{
+  grid-column:1/3;
+  padding:18px;background:var(--dorado);border:none;
+  font-family:var(--font-sans);font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--carbon);cursor:pointer;transition:.25s;
+}
+.btn-lead:hover{background:#b8961e}
+
+/* ── FOOTER ── */
+#footer{background:#0d0f0e;padding:80px 0 40px}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:64px;
+  margin-bottom:64px;
+}
+.footer-brand-name{
+  font-family:var(--font-display);font-size:32px;font-weight:400;
+  color:var(--perla);letter-spacing:4px;margin-bottom:8px;
+}
+.footer-brand-sub{
+  font-size:9px;font-weight:600;letter-spacing:4px;text-transform:uppercase;
+  color:var(--dorado);margin-bottom:20px;
+}
+.footer-desc{
+  font-size:12px;line-height:1.8;
+  color:rgba(247,245,242,.35);font-weight:300;margin-bottom:24px;
+}
+.footer-socials{display:flex;gap:10px}
+.footer-social{
+  width:36px;height:36px;border:1px solid rgba(247,245,242,.12);border-radius:2px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:.2s;
+}
+.footer-social:hover{border-color:var(--dorado);background:var(--dorado-glow)}
+.footer-social svg{width:14px;height:14px;color:rgba(247,245,242,.5)}
+.footer-social:hover svg{color:var(--dorado)}
+.footer-col-title{
+  font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:rgba(247,245,242,.3);margin-bottom:24px;
+}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-links a{
+  font-size:12px;color:rgba(247,245,242,.5);
+  text-decoration:none;transition:.2s;letter-spacing:.5px;
+}
+.footer-links a:hover{color:var(--perla)}
+.footer-bottom{
+  border-top:1px solid rgba(247,245,242,.06);padding-top:32px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;
+}
+.footer-copy{font-size:10px;color:rgba(247,245,242,.2);letter-spacing:1px}
+
+/* ── WHATSAPP BTN ── */
+#wa-btn{
+  position:fixed;bottom:32px;right:32px;z-index:90;
+  width:56px;height:56px;border-radius:50%;
+  background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,.4);
+  transition:transform .25s,box-shadow .25s;
+  text-decoration:none;
+}
+#wa-btn:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(37,211,102,.5)}
+#wa-btn svg{width:28px;height:28px;color:#fff}
+
+/* ── MODAL LOGIN ── */
+#login-modal{
+  display:none;position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(12px);
+  align-items:center;justify-content:center;
+}
+#login-modal.open{display:flex}
+.login-box{
+  background:#111412;border:1px solid rgba(212,175,55,.15);
+  border-radius:4px;padding:56px 48px;max-width:400px;width:90%;
+  text-align:center;position:relative;
+  box-shadow:0 24px 80px rgba(0,0,0,.6);
+}
+.login-logo{
+  font-family:var(--font-display);font-size:28px;font-weight:400;
+  color:var(--perla);letter-spacing:5px;margin-bottom:6px;
+}
+.login-sub{
+  font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--dorado);margin-bottom:40px;
+}
+.login-field{
+  width:100%;padding:14px 18px;
+  background:rgba(247,245,242,.04);
+  border:1px solid rgba(247,245,242,.08);
+  border-radius:2px;margin-bottom:12px;
+  font-family:var(--font-sans);font-size:12px;letter-spacing:1px;
+  color:var(--perla);outline:none;transition:.2s;
+}
+.login-field::placeholder{color:rgba(247,245,242,.25);font-size:11px;text-transform:uppercase;letter-spacing:2px}
+.login-field:focus{border-color:rgba(212,175,55,.3);background:rgba(0,75,62,.1)}
+.btn-login{
+  width:100%;padding:15px;
+  background:var(--dorado);border:none;border-radius:2px;
+  font-family:var(--font-sans);font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--carbon);cursor:pointer;transition:.25s;margin-top:8px;
+}
+.btn-login:hover{background:#b8961e}
+.login-error{
+  font-size:11px;color:#e05555;letter-spacing:.5px;
+  margin-top:12px;display:none;
+}
+
+/* ════════════════════════════════
+   ██ BACKOFFICE ADMIN
+   ════════════════════════════════ */
+#bo{display:none;flex-direction:row;height:100vh;overflow:hidden;font-family:var(--font-sans)}
+#bo.active{display:flex}
+
+/* ── BO NAV ── */
+#bo-nav{
+  width:220px;min-width:220px;
+  background:var(--bo-surface);
+  border-right:1px solid var(--bo-border);
+  display:flex;flex-direction:column;overflow-y:auto;
+  flex-shrink:0;z-index:10;
+}
+.bo-logo{
+  padding:20px 18px 16px;
+  border-bottom:1px solid var(--bo-border);flex-shrink:0;
+}
+.bo-brand{display:flex;align-items:center;gap:10px}
+.bo-brand-icon{
+  width:30px;height:30px;
+  background:linear-gradient(135deg, var(--verde), var(--verde-dark));
+  border-radius:6px;display:flex;align-items:center;justify-content:center;
+}
+.bo-brand-icon svg{width:14px;height:14px;color:var(--dorado)}
+.bo-brand-name{
+  font-family:var(--font-display);font-size:16px;font-weight:700;
+  color:var(--bo-text);letter-spacing:2px;
+}
+.bo-brand-sub{font-size:8px;color:var(--bo-muted);letter-spacing:2px;text-transform:uppercase;margin-top:1px}
+.bo-section-label{
+  padding:14px 18px 4px;
+  font-size:8px;color:var(--bo-muted);
+  letter-spacing:2.5px;text-transform:uppercase;font-weight:700;flex-shrink:0;
+}
+.bo-link{
+  display:flex;align-items:center;gap:9px;
+  padding:9px 18px;color:var(--bo-muted);
+  text-decoration:none;font-size:12px;font-weight:500;
+  border-left:2px solid transparent;transition:all .15s;cursor:pointer;flex-shrink:0;
+}
+.bo-link:hover{color:var(--bo-text);background:var(--bo-surface2)}
+.bo-link.active{
+  color:var(--dorado);background:rgba(212,175,55,.05);
+  border-left-color:var(--dorado);font-weight:600;
+}
+.bo-link svg{width:13px;height:13px;flex-shrink:0;opacity:.7}
+.bo-link.active svg{opacity:1}
+.bo-link-badge{
+  margin-left:auto;
+  background:rgba(212,75,75,.15);color:#e05555;
+  font-size:8px;font-weight:700;padding:1px 6px;border-radius:20px;
+}
+.bo-bottom{
+  margin-top:auto;padding:14px 18px;
+  border-top:1px solid var(--bo-border);flex-shrink:0;
+}
+.bo-user-info{display:flex;align-items:center;gap:10px}
+.bo-user-avatar{
+  width:30px;height:30px;border-radius:50%;
+  background:linear-gradient(135deg, var(--verde), var(--dorado));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:13px;color:var(--carbon);
+}
+.bo-user-name{font-size:11px;font-weight:600;color:var(--bo-text)}
+.bo-user-role{font-size:9px;color:var(--bo-muted);letter-spacing:1px}
+.btn-logout{
+  margin-top:10px;width:100%;
+  padding:7px;background:transparent;
+  border:1px solid var(--bo-border2);border-radius:4px;
+  font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--bo-muted);cursor:pointer;transition:.2s;font-family:var(--font-sans);
+}
+.btn-logout:hover{border-color:rgba(224,85,85,.4);color:#e05555}
+
+/* ── BO MAIN ── */
+#bo-main{flex:1;overflow-y:auto;background:var(--bo-bg)}
+.bo-page{display:none;padding:26px 28px;min-height:100vh}
+.bo-page.active{display:block;animation:fadeUp .25s ease}
+
+.bo-page-header{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:22px;gap:12px;flex-wrap:wrap;
+}
+.bo-page-title{
+  font-family:var(--font-head);font-size:19px;font-weight:700;
+  color:var(--bo-text);letter-spacing:-.3px;
+}
+.bo-page-sub{font-size:11px;color:var(--bo-muted);margin-top:2px;letter-spacing:.3px}
+.bo-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* BO BUTTONS */
+.bb{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:7px 14px;border-radius:5px;
+  font-size:11px;font-weight:600;cursor:pointer;border:none;
+  transition:.15s;font-family:var(--font-sans);line-height:1;white-space:nowrap;
+}
+.bb-primary{background:var(--dorado);color:var(--carbon)}
+.bb-primary:hover{background:#b8961e}
+.bb-outline{background:transparent;border:1px solid var(--bo-border2);color:var(--bo-text)}
+.bb-outline:hover{border-color:var(--dorado);color:var(--dorado)}
+.bb-ghost{background:transparent;color:var(--bo-muted);padding:6px 10px}
+.bb-ghost:hover{color:var(--bo-text);background:var(--bo-surface2)}
+.bb-danger{background:transparent;border:1px solid rgba(224,85,85,.25);color:#e05555}
+.bb-danger:hover{background:rgba(224,85,85,.08)}
+.bb svg{width:11px;height:11px}
+
+/* STAT CARDS */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.stat-card{
+  background:var(--bo-surface);border:1px solid var(--bo-border);
+  border-radius:8px;padding:18px 20px;
+}
+.stat-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.stat-card-label{font-size:10px;color:var(--bo-muted);letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
+.stat-card-icon{
+  width:30px;height:30px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+}
+.stat-card-icon svg{width:14px;height:14px}
+.stat-card-value{
+  font-family:var(--font-head);font-size:24px;font-weight:700;
+  color:var(--bo-text);line-height:1;margin-bottom:6px;
+}
+.stat-card-change{font-size:11px;display:flex;align-items:center;gap:4px}
+.stat-up{color:#38d98a}
+.stat-down{color:#e05555}
+
+/* TABLES */
+.bo-table-wrap{
+  background:var(--bo-surface);border:1px solid var(--bo-border);
+  border-radius:8px;overflow:hidden;
+}
+.bo-table-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;border-bottom:1px solid var(--bo-border);
+  flex-wrap:wrap;gap:10px;
+}
+.bo-table-title{font-size:13px;font-weight:700;color:var(--bo-text);font-family:var(--font-head)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead tr th{
+  padding:10px 16px;
+  text-align:left;font-size:9px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--bo-muted);
+  border-bottom:1px solid var(--bo-border);
+  background:var(--bo-surface);white-space:nowrap;
+}
+tbody tr td{
+  padding:12px 16px;border-bottom:1px solid var(--bo-border);
+  color:var(--bo-text);vertical-align:middle;
+}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--bo-surface2)}
+
+/* CHIPS / BADGES */
+.chip{
+  display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+}
+.chip-green{background:rgba(56,217,138,.1);color:#38d98a}
+.chip-amber{background:rgba(212,175,55,.12);color:var(--dorado)}
+.chip-red{background:rgba(224,85,85,.1);color:#e05555}
+.chip-blue{background:rgba(90,174,255,.1);color:#5aaeff}
+.chip-gray{background:rgba(120,130,120,.1);color:var(--bo-muted)}
+
+/* FORM CONTROLS */
+.bo-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.bo-form-field{display:flex;flex-direction:column;gap:5px}
+.bo-form-field.full{grid-column:1/3}
+.bo-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--bo-muted)}
+.bo-input{
+  padding:9px 12px;
+  background:var(--bo-surface2);
+  border:1px solid var(--bo-border2);border-radius:5px;
+  font-family:var(--font-sans);font-size:12px;color:var(--bo-text);outline:none;
+  transition:.2s;
+}
+.bo-input:focus{border-color:rgba(212,175,55,.4);background:rgba(0,75,62,.08)}
+.bo-input::placeholder{color:var(--bo-muted);font-size:11px}
+.bo-select{
+  padding:9px 12px;
+  background:var(--bo-surface2);
+  border:1px solid var(--bo-border2);border-radius:5px;
+  font-family:var(--font-sans);font-size:12px;color:var(--bo-text);outline:none;
+  cursor:pointer;appearance:none;
+}
+
+/* COST CALCULATOR */
+.cost-table{
+  background:var(--bo-surface);border:1px solid var(--bo-border);
+  border-radius:8px;overflow:hidden;
+}
+.cost-table table td:last-child{font-weight:600;text-align:right}
+.cost-result{
+  background:rgba(0,75,62,.2);border-top:1px solid rgba(212,175,55,.2);
+  padding:14px 16px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.cost-result-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bo-muted)}
+.cost-result-value{font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--dorado)}
+
+/* FINANCIAL */
+.fin-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px}
+.fin-card{
+  background:var(--bo-surface);border:1px solid var(--bo-border);
+  border-radius:8px;padding:20px;text-align:center;
+}
+.fin-card-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bo-muted);margin-bottom:10px}
+.fin-card-value{font-family:var(--font-head);font-size:28px;font-weight:700;color:var(--bo-text)}
+.fin-card-value.pos{color:#38d98a}
+.fin-card-value.neg{color:#e05555}
+.fin-card-value.gold{color:var(--dorado)}
+
+/* NOTIFICATION */
+.notification{
+  position:fixed;top:80px;right:24px;z-index:200;
+  background:var(--bo-surface);border:1px solid rgba(212,175,55,.2);
+  border-left:3px solid var(--dorado);border-radius:6px;
+  padding:14px 18px;min-width:280px;max-width:380px;
+  box-shadow:0 8px 32px rgba(0,0,0,.5);
+  transform:translateX(calc(100% + 40px));
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.notification.show{transform:translateX(0)}
+.notification-title{font-size:12px;font-weight:700;color:var(--bo-text);margin-bottom:3px}
+.notification-msg{font-size:11px;color:var(--bo-muted)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes pulse{
+  0%,100%{opacity:.5}50%{opacity:1}
+}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .servicios-grid{grid-template-columns:repeat(2,1fr)}
+  .boutique-grid{grid-template-columns:repeat(2,1fr)}
+  .cursos-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .ceo-grid{grid-template-columns:1fr}
+  .ceo-image-frame{min-height:400px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px}
+}
+@media(max-width:768px){
+  #navbar{padding:0 20px}
+  .nav-links,.nav-actions{display:none}
+  .hamburger{display:flex}
+  .container{padding:0 20px}
+  .section{padding:64px 0}
+  .servicios-grid,.boutique-grid{grid-template-columns:1fr}
+  .cursos-grid{grid-template-columns:1fr}
+  .blog-grid{grid-template-columns:1fr}
+  .blog-card.featured{grid-row:auto}
+  .footer-top{grid-template-columns:1fr}
+  .lead-form{grid-template-columns:1fr}
+  .lead-form-field.full,.btn-lead{grid-column:1}
+  .ceo-content{padding:40px 24px}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .fin-grid{grid-template-columns:1fr}
+  .bo-form-grid{grid-template-columns:1fr}
+  .bo-form-field.full{grid-column:1}
+  #bo-nav{width:60px;min-width:60px}
+  .bo-brand-name,.bo-brand-sub,.bo-link span,.bo-section-label,.bo-user-name,.bo-user-role,.bo-bottom-text{display:none}
+  .bo-link{padding:10px;justify-content:center}
+  .bo-link.active{border-left-color:var(--dorado)}
+  .bo-link svg{width:16px;height:16px;opacity:1}
+  .transform-grid{grid-template-columns:1fr}
+  .filosofia-pillars{gap:32px}
+  .hero-ctas{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ FRONTEND PÚBLICO ════════════════ -->
+<div id="frontend" class="layer active">
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#" class="nav-logo" onclick="scrollToTop()">
+    <!-- Inline logo SVG replicating the brand mark -->
+    <svg class="nav-logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 4 L22 10 L20 8 L18 10 Z" fill="#D4AF37" opacity=".8"/>
+      <path d="M20 36 L22 30 L20 32 L18 30 Z" fill="#D4AF37" opacity=".8"/>
+      <path d="M4 20 L10 18 L8 20 L10 22 Z" fill="#D4AF37" opacity=".8"/>
+      <path d="M36 20 L30 18 L32 20 L30 22 Z" fill="#D4AF37" opacity=".8"/>
+      <path d="M8 8 L13 11 L11 13 L8 8Z" fill="#D4AF37" opacity=".6"/>
+      <path d="M32 32 L27 29 L29 27 L32 32Z" fill="#D4AF37" opacity=".6"/>
+      <path d="M32 8 L27 11 L29 13 L32 8Z" fill="#D4AF37" opacity=".6"/>
+      <path d="M8 32 L13 29 L11 27 L8 32Z" fill="#D4AF37" opacity=".6"/>
+      <circle cx="20" cy="20" r="3" fill="#D4AF37"/>
+    </svg>
+    <span class="nav-logo-text">ESSENCE</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#ceo" onclick="smoothScroll('ceo')">La Fundadora</a></li>
+    <li><a href="#servicios" onclick="smoothScroll('servicios')">Servicios</a></li>
+    <li><a href="#boutique" onclick="smoothScroll('boutique')">Boutique</a></li>
+    <li><a href="#cursos" onclick="smoothScroll('cursos')">Talleres</a></li>
+    <li><a href="#blog" onclick="smoothScroll('blog')">Editorial</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a class="btn-nav" href="#leads" onclick="smoothScroll('leads')">Reservar</a>
+    <a class="btn-nav filled" href="https://wa.me/51999999999?text=Hola,%20me%20interesa%20una%20asesoría%20en%20ESSENCE" target="_blank">WhatsApp</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span></span>Asesoría de Imagen & Moda de Lujo<span></span>
+    </div>
+    <h1 class="hero-title">
+      ESSENCE
+      <em>Estilo & Lujo</em>
+    </h1>
+    <p class="hero-sub">Tu transformación comienza aquí · Lima, Perú</p>
+    <div class="hero-ctas">
+      <a class="btn-hero-primary" href="#leads" onclick="smoothScroll('leads')">Reservar Asesoría</a>
+      <a class="btn-hero-outline" href="#boutique" onclick="smoothScroll('boutique')">Explorar Colección</a>
+      <a class="btn-hero-outline" href="#cursos" onclick="smoothScroll('cursos')">Ver Talleres</a>
+      <a class="btn-hero-outline" href="https://wa.me/51999999999?text=Hola,%20quiero%20más%20información%20sobre%20ESSENCE" target="_blank">Contactar WhatsApp</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- CEO / FUNDADORA -->
+<section id="ceo" class="section" style="padding:0">
+  <div class="ceo-grid">
+    <div class="ceo-image">
+      <div class="ceo-image-frame" style="background-image:url('https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=800&q=80'),linear-gradient(135deg,#0d1a18,#004B3E)"></div>
+      <div class="ceo-image-overlay">
+        <p class="ceo-image-quote">"El estilo no es sobre la ropa que vistes,<br>sino sobre el mensaje que transmites."</p>
+      </div>
+    </div>
+    <div class="ceo-content reveal">
+      <div class="ceo-role">Fundadora & CEO</div>
+      <div class="ceo-name">Valentina<br>Morales</div>
+      <p class="ceo-bio">
+        Con más de 12 años transformando la imagen de ejecutivas, empresarias y mujeres que buscan proyectar su mejor versión, Valentina es la referente de la asesoría de imagen premium en Perú. Formada en París y Milán, su filosofía combina la elegancia europea con la autenticidad latinoamericana.
+      </p>
+      <div class="ceo-stats">
+        <div>
+          <div class="ceo-stat-n">500+</div>
+          <div class="ceo-stat-l">Clientes</div>
+        </div>
+        <div>
+          <div class="ceo-stat-n">12</div>
+          <div class="ceo-stat-l">Años</div>
+        </div>
+        <div>
+          <div class="ceo-stat-n">98%</div>
+          <div class="ceo-stat-l">Satisfacción</div>
+        </div>
+      </div>
+      <div class="ceo-signature">Valentina M.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FILOSOFÍA -->
+<section id="filosofia">
+  <div class="container">
+    <div class="filosofia-inner reveal">
+      <h2 class="filosofia-title">
+        Cada mujer es<br>
+        <em>una obra de arte</em><br>
+        esperando ser vista
+      </h2>
+      <p class="filosofia-text">
+        En ESSENCE creemos que el estilo es una forma de liderazgo silencioso. Que la manera en que te vistes comunica antes de que abras la boca. Nuestro trabajo es traducir tu esencia interior en una presencia exterior que inspire respeto, confianza y admiración.
+      </p>
+      <div class="filosofia-pillars">
+        <div class="filosofia-pillar">
+          <div class="filosofia-pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+          </div>
+          <div class="filosofia-pillar-name">Identidad</div>
+        </div>
+        <div class="filosofia-pillar">
+          <div class="filosofia-pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="filosofia-pillar-name">Excelencia</div>
+        </div>
+        <div class="filosofia-pillar">
+          <div class="filosofia-pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          </div>
+          <div class="filosofia-pillar-name">Elegancia</div>
+        </div>
+        <div class="filosofia-pillar">
+          <div class="filosofia-pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <div class="filosofia-pillar-name">Pasión</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Nuestros Servicios</div>
+      <h2 class="section-title">Una experiencia<br><em>diseñada para ti</em></h2>
+    </div>
+    <div class="servicios-grid reveal" style="transition-delay:.1s">
+      <div class="servicio-card" onclick="openWhatsApp('Hola, me interesa el servicio de Asesoría Personal de Imagen.')">
+        <div class="servicio-num">01</div>
+        <div class="servicio-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="servicio-title">Asesoría Personal<br>de Imagen</div>
+        <div class="servicio-desc">Análisis completo de tu figura, colorimetría y estilo personal para construir un guardarropa cápsula que refleje tu esencia.</div>
+        <div class="servicio-cta">Reservar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="servicio-card" onclick="openWhatsApp('Hola, me interesa el servicio de Personal Shopper.')">
+        <div class="servicio-num">02</div>
+        <div class="servicio-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+        <div class="servicio-title">Personal<br>Shopper</div>
+        <div class="servicio-desc">Acompañamiento exclusivo en tiendas premium para seleccionar piezas que potencien tu imagen con elegancia y funcionalidad.</div>
+        <div class="servicio-cta">Reservar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="servicio-card" onclick="openWhatsApp('Hola, me interesa el servicio de Imagen Ejecutiva.')">
+        <div class="servicio-num">03</div>
+        <div class="servicio-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+        <div class="servicio-title">Imagen<br>Ejecutiva</div>
+        <div class="servicio-desc">Construye una presencia corporativa poderosa que inspire confianza y liderazgo en entornos empresariales de alto nivel.</div>
+        <div class="servicio-cta">Reservar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="servicio-card" onclick="openWhatsApp('Hola, me interesa el servicio de Colorimetría.')">
+        <div class="servicio-num">04</div>
+        <div class="servicio-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 010 20 5 5 0 010-10 5 5 0 000-10"/></svg></div>
+        <div class="servicio-title">Colorimetría<br>Personal</div>
+        <div class="servicio-desc">Descubre tu paleta cromática ideal para potenciar tu luminosidad natural y crear combinaciones que te hagan brillar.</div>
+        <div class="servicio-cta">Reservar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="servicio-card" onclick="openWhatsApp('Hola, me interesa el servicio de Dress Code Corporativo.')">
+        <div class="servicio-num">05</div>
+        <div class="servicio-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="servicio-title">Dress Code<br>Corporativo</div>
+        <div class="servicio-desc">Asesoría grupal para equipos empresariales. Definimos la imagen corporativa que comunica los valores de tu marca.</div>
+        <div class="servicio-cta">Reservar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="servicio-card" onclick="openWhatsApp('Hola, me interesa el servicio de Asesoría para Eventos.')">
+        <div class="servicio-num">06</div>
+        <div class="servicio-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <div class="servicio-title">Asesoría para<br>Eventos</div>
+        <div class="servicio-desc">Tu look perfecto para cada ocasión especial: bodas, galas, presentaciones, graduaciones y eventos de alto perfil.</div>
+        <div class="servicio-cta">Reservar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORMACIONES -->
+<section id="transformaciones" class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Transformaciones Reales</div>
+      <h2 class="section-title">Antes & Después</h2>
+      <p class="section-desc">Resultados reales de mujeres que decidieron invertir en su imagen y transformar su vida.</p>
+    </div>
+    <div class="transform-grid reveal" style="transition-delay:.15s">
+      <div class="transform-card">
+        <div class="transform-before-after">
+          <div class="transform-side">
+            <img id="transf1-antes" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=70&grayscale" alt="antes" style="filter:grayscale(60%) brightness(.8)">
+            <div class="transform-label">Antes</div>
+          </div>
+          <div class="transform-side">
+            <img id="transf1-despues" src="https://images.unsplash.com/photo-1488716820095-cbe80883c496?w=400&q=80" alt="después">
+            <div class="transform-label">Después</div>
+          </div>
+        </div>
+        <div class="transform-info">
+          <div class="transform-name">Andrea C. — Gerente Comercial</div>
+          <div class="transform-meta">Asesoría Personal + Shopping · Lima</div>
+          <div class="transform-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="transform-card">
+        <div class="transform-before-after">
+          <div class="transform-side">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&q=70" alt="antes" style="filter:grayscale(60%) brightness(.8)">
+            <div class="transform-label">Antes</div>
+          </div>
+          <div class="transform-side">
+            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80" alt="después">
+            <div class="transform-label">Después</div>
+          </div>
+        </div>
+        <div class="transform-info">
+          <div class="transform-name">Sofía M. — Directora de Marketing</div>
+          <div class="transform-meta">Imagen Ejecutiva + Colorimetría · Lima</div>
+          <div class="transform-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOUTIQUE -->
+<section id="boutique">
+  <div class="boutique-header reveal container" style="padding-top:100px">
+    <div class="section-label" style="justify-content:center">
+      <span></span>Colección Exclusiva<span style="display:inline-block;width:32px;height:1px;background:var(--dorado)"></span>
+    </div>
+    <h2 class="section-title" style="color:var(--perla);text-align:center">La Boutique</h2>
+  </div>
+  <div class="boutique-grid reveal container" style="padding-bottom:100px;padding-top:40px;max-width:100%">
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-inner" style="background-image:url('https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=500&q=80')"></div>
+        <span class="product-badge new">Nuevo</span>
+        <div class="product-wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Vestidos</div>
+        <div class="product-name">Vestido Emerald Editorial</div>
+        <div class="product-pricing"><span class="product-price">S/ 890</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-inner" style="background-image:url('https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=500&q=80')"></div>
+        <span class="product-badge sale">Sale</span>
+        <div class="product-wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Blazers</div>
+        <div class="product-name">Blazer Oversize Atelier</div>
+        <div class="product-pricing"><span class="product-price">S/ 650</span><span class="product-price-old">S/ 890</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-inner" style="background-image:url('https://images.unsplash.com/photo-1508427953056-b00b8d78ebf5?w=500&q=80')"></div>
+        <div class="product-wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Accesorios</div>
+        <div class="product-name">Bolso Cuero Napa Premium</div>
+        <div class="product-pricing"><span class="product-price">S/ 1,290</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-inner" style="background-image:url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&q=80')"></div>
+        <span class="product-badge new">Nuevo</span>
+        <div class="product-wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Outfits</div>
+        <div class="product-name">Conjunto Ejecutivo Sage</div>
+        <div class="product-pricing"><span class="product-price">S/ 1,480</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURSOS Y TALLERES -->
+<section id="cursos" class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Formación Exclusiva</div>
+      <h2 class="section-title">Cursos &<br><em>Talleres Premium</em></h2>
+    </div>
+    <div class="cursos-grid">
+      <div class="curso-card reveal">
+        <div class="curso-img">
+          <div class="curso-img-inner" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80')"></div>
+          <span class="curso-tag live">Presencial</span>
+        </div>
+        <div class="curso-info">
+          <div class="curso-meta"><span>Jun 20 · Lima</span><span>12 cupos</span></div>
+          <div class="curso-title">Masterclass de Imagen Ejecutiva</div>
+          <div class="curso-desc">Aprende a construir una imagen profesional que inspire liderazgo y confianza en entornos corporativos.</div>
+        </div>
+        <div class="curso-footer">
+          <div class="curso-price">S/ 350</div>
+          <button class="btn-curso" onclick="openWhatsApp('Hola, quiero inscribirme a la Masterclass de Imagen Ejecutiva.')">Inscribirme</button>
+        </div>
+      </div>
+      <div class="curso-card reveal" style="transition-delay:.1s">
+        <div class="curso-img">
+          <div class="curso-img-inner" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80')"></div>
+          <span class="curso-tag online">Online</span>
+        </div>
+        <div class="curso-info">
+          <div class="curso-meta"><span>Jul 5 · Zoom</span><span>30 cupos</span></div>
+          <div class="curso-title">Workshop de Colorimetría</div>
+          <div class="curso-desc">Descubre tu paleta personal y aprende a combinar colores que potencien tu belleza natural.</div>
+        </div>
+        <div class="curso-footer">
+          <div class="curso-price">S/ 180</div>
+          <button class="btn-curso" onclick="openWhatsApp('Hola, quiero inscribirme al Workshop de Colorimetría.')">Inscribirme</button>
+        </div>
+      </div>
+      <div class="curso-card reveal" style="transition-delay:.2s">
+        <div class="curso-img">
+          <div class="curso-img-inner" style="background-image:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80')"></div>
+          <span class="curso-tag live">Presencial</span>
+        </div>
+        <div class="curso-info">
+          <div class="curso-meta"><span>Jul 15 · Lima</span><span>8 cupos VIP</span></div>
+          <div class="curso-title">Bootcamp Estilo Total</div>
+          <div class="curso-desc">Programa intensivo de 2 días: análisis corporal, colorimetría, shopping tour y sesión de fotos editorial.</div>
+        </div>
+        <div class="curso-footer">
+          <div class="curso-price">S/ 890</div>
+          <button class="btn-curso" onclick="openWhatsApp('Hola, quiero inscribirme al Bootcamp Estilo Total.')">Inscribirme</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="container" style="padding-bottom:20px">
+    <div class="reveal">
+      <div class="section-label">Testimonios</div>
+      <h2 class="section-title">Lo que dicen<br><em>nuestras clientas</em></h2>
+    </div>
+  </div>
+  <div class="testimonios-track reveal" style="transition-delay:.1s">
+    <div class="testimonio-card">
+      <div class="testimonio-stars">★★★★★</div>
+      <p class="testimonio-text">"Valentina cambió completamente mi relación con mi imagen. Ahora llego a cada reunión sintiéndome poderosa y auténtica. Es una inversión que se traduce en resultados profesionales reales."</p>
+      <div class="testimonio-author">
+        <div class="testimonio-avatar">A</div>
+        <div>
+          <div class="testimonio-name">Andrea Castro</div>
+          <div class="testimonio-role">Gerente Comercial · Lima</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonio-card">
+      <div class="testimonio-stars">★★★★★</div>
+      <p class="testimonio-text">"Pensé que una asesora de imagen era un lujo. Después de trabajar con ESSENCE entendí que era una necesidad. La sesión de colorimetría me abrió los ojos a un mundo de posibilidades que ni imaginaba."</p>
+      <div class="testimonio-author">
+        <div class="testimonio-avatar">M</div>
+        <div>
+          <div class="testimonio-name">María Fernanda Torres</div>
+          <div class="testimonio-role">Emprendedora · Trujillo</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonio-card">
+      <div class="testimonio-stars">★★★★★</div>
+      <p class="testimonio-text">"El personal shopping con Valentina fue una experiencia increíble. Salí con un guardarropa que realmente funciona para mi vida y me hace sentir yo misma en todo momento."</p>
+      <div class="testimonio-author">
+        <div class="testimonio-avatar">C</div>
+        <div>
+          <div class="testimonio-name">Carolina Vega</div>
+          <div class="testimonio-role">Directora de Operaciones · Lima</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonio-card">
+      <div class="testimonio-stars">★★★★★</div>
+      <p class="testimonio-text">"La boutique de ESSENCE es diferente a todo. No es una tienda, es una experiencia. Cada pieza fue elegida con intención. Me enamoré del blazer que compré y lo uso en cada presentación importante."</p>
+      <div class="testimonio-author">
+        <div class="testimonio-avatar">P</div>
+        <div>
+          <div class="testimonio-name">Patricia Guzmán</div>
+          <div class="testimonio-role">CEO · Arequipa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG EDITORIAL -->
+<section id="blog">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Mundo Editorial</div>
+      <h2 class="section-title">Tips & Tendencias</h2>
+    </div>
+    <div class="blog-grid reveal" style="transition-delay:.1s">
+      <div class="blog-card featured">
+        <div class="blog-card-img">
+          <div class="blog-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80')"></div>
+        </div>
+        <div class="blog-card-info">
+          <div class="blog-cat">Dress Code</div>
+          <div class="blog-title">La guía definitiva del dress code ejecutivo femenino para 2026</div>
+          <div class="blog-date">12 Mayo · 8 min lectura</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1445205170230-053b83016050?w=500&q=80')"></div>
+        </div>
+        <div class="blog-card-info">
+          <div class="blog-cat">Tendencias</div>
+          <div class="blog-title">Colores que dominarán el otoño 2026</div>
+          <div class="blog-date">8 Mayo · 5 min</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-inner" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500&q=80')"></div>
+        </div>
+        <div class="blog-card-info">
+          <div class="blog-cat">Estilo Personal</div>
+          <div class="blog-title">Cómo construir un guardarropa cápsula en 10 piezas</div>
+          <div class="blog-date">3 Mayo · 6 min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD CAPTURE -->
+<section id="leads">
+  <div class="leads-bg"></div>
+  <div class="container">
+    <div class="leads-inner reveal">
+      <h2 class="leads-title">Únete al<br><em>universo ESSENCE</em></h2>
+      <p class="leads-sub">Acceso exclusivo a contenido premium, colecciones y eventos privados</p>
+      <form class="lead-form" onsubmit="submitLead(event)">
+        <input class="lead-form-field" type="text" placeholder="Nombre completo" id="lead-name" required/>
+        <input class="lead-form-field" type="email" placeholder="Correo electrónico" id="lead-email" required/>
+        <input class="lead-form-field" type="tel" placeholder="Celular / WhatsApp" id="lead-phone"/>
+        <input class="lead-form-field" type="text" placeholder="Instagram @" id="lead-instagram"/>
+        <select class="lead-form-field bo-select" id="lead-interest" style="color:rgba(247,245,242,.3);background:rgba(30,30,30,.8);border:none">
+          <option value="" disabled selected style="color:#888">Tu interés principal</option>
+          <option value="asesoria">Asesoría Personal</option>
+          <option value="shopper">Personal Shopper</option>
+          <option value="ejecutiva">Imagen Ejecutiva</option>
+          <option value="colorimetria">Colorimetría</option>
+          <option value="cursos">Cursos y Talleres</option>
+          <option value="boutique">Boutique</option>
+        </select>
+        <input class="lead-form-field" type="text" placeholder="Ciudad" id="lead-city"/>
+        <textarea class="lead-form-field full bo-input" placeholder="Cuéntame sobre tu proyecto de imagen..." id="lead-message" rows="3" style="resize:none;background:rgba(30,30,30,.8);border:none"></textarea>
+        <button type="submit" class="btn-lead">Quiero ser parte de ESSENCE →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">ESSENCE</div>
+        <div class="footer-brand-sub">Estilo & Lujo</div>
+        <p class="footer-desc">La primera plataforma de asesoría de imagen de lujo en Perú. Transformamos presencias, construimos confianza.</p>
+        <div class="footer-socials">
+          <div class="footer-social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+          <div class="footer-social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></div>
+          <div class="footer-social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Servicios</div>
+        <ul class="footer-links">
+          <li><a href="#">Asesoría Personal</a></li>
+          <li><a href="#">Personal Shopper</a></li>
+          <li><a href="#">Imagen Ejecutiva</a></li>
+          <li><a href="#">Colorimetría</a></li>
+          <li><a href="#">Eventos</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Empresa</div>
+        <ul class="footer-links">
+          <li><a href="#">La Fundadora</a></li>
+          <li><a href="#">Filosofía</a></li>
+          <li><a href="#">Boutique</a></li>
+          <li><a href="#">Cursos</a></li>
+          <li><a href="#">Blog Editorial</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contacto</div>
+        <ul class="footer-links">
+          <li><a href="#">Lima, Perú</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Newsletter</a></li>
+          <li><a href="#" onclick="openAdmin()">Admin</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 ESSENCE Estilo & Lujo. Todos los derechos reservados.</div>
+      <div class="footer-copy">Diseñado con elegancia · Lima, Perú</div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Button -->
+<a id="wa-btn" href="https://wa.me/51999999999?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20ESSENCE." target="_blank" title="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+</div><!-- /frontend -->
+
+<!-- ════════════════ MODAL LOGIN ADMIN ════════════════ -->
+<div id="login-modal">
+  <div class="login-box">
+    <div class="login-logo">ESSENCE</div>
+    <div class="login-sub">Panel Administrativo</div>
+    <input class="login-field" type="text" id="login-user" placeholder="Usuario" autocomplete="off"/>
+    <input class="login-field" type="password" id="login-pass" placeholder="Contraseña"/>
+    <button class="btn-login" onclick="doLogin()">Acceder al Sistema →</button>
+    <div class="login-error" id="login-error">Credenciales incorrectas. Intenta nuevamente.</div>
+    <div style="margin-top:20px">
+      <button onclick="closeLogin()" style="background:none;border:none;color:rgba(247,245,242,.3);font-size:11px;cursor:pointer;letter-spacing:1px">← Volver al sitio</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ BACKOFFICE ════════════════ -->
+<div id="bo">
+
+  <!-- BO SIDEBAR -->
+  <nav id="bo-nav">
+    <div class="bo-logo">
+      <div class="bo-brand">
+        <div class="bo-brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div>
+          <div class="bo-brand-name">ESSENCE</div>
+          <div class="bo-brand-sub">Admin Panel</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bo-section-label">Principal</div>
+    <div class="bo-link active" onclick="boPage('dashboard')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span>Dashboard</span>
+    </div>
+    <div class="bo-link" onclick="boPage('leads')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      <span>Leads CRM</span>
+      <span class="bo-link-badge" id="leads-badge">0</span>
+    </div>
+    <div class="bo-link" onclick="boPage('clientes')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Clientes</span>
+    </div>
+
+    <div class="bo-section-label">Comercial</div>
+    <div class="bo-link" onclick="boPage('productos')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span>Productos</span>
+    </div>
+    <div class="bo-link" onclick="boPage('costeo')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 7H6a2 2 0 00-2 2v9a2 2 0 002 2h9a2 2 0 002-2v-3M18 2l4 4-10 10H8v-4L18 2z"/></svg>
+      <span>Motor de Costeo</span>
+    </div>
+    <div class="bo-link" onclick="boPage('ventas')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      <span>Ventas</span>
+    </div>
+
+    <div class="bo-section-label">Finanzas</div>
+    <div class="bo-link" onclick="boPage('finanzas')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span>Dashboard Financiero</span>
+    </div>
+
+    <div class="bo-section-label">Contenido</div>
+    <div class="bo-link" onclick="boPage('contenido')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <span>Panel de Contenido</span>
+    </div>
+
+    <div class="bo-bottom">
+      <div class="bo-user-info">
+        <div class="bo-user-avatar">A</div>
+        <div>
+          <div class="bo-user-name">Admin</div>
+          <div class="bo-user-role">Super Admin</div>
+        </div>
+      </div>
+      <button class="btn-logout" onclick="logout()">← Cerrar Sesión</button>
+    </div>
+  </nav>
+
+  <!-- BO MAIN CONTENT -->
+  <main id="bo-main">
+
+    <!-- DASHBOARD -->
+    <div class="bo-page active" id="page-dashboard">
+      <div class="bo-page-header">
+        <div>
+          <div class="bo-page-title">Dashboard General</div>
+          <div class="bo-page-sub">Bienvenida de vuelta, Admin · <span id="bo-date"></span></div>
+        </div>
+        <div class="bo-actions">
+          <button class="bb bb-outline" onclick="exportReport()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Exportar
+          </button>
+          <button class="bb bb-primary" onclick="showNotif('Nueva venta registrada','S/ 890 — Vestido Emerald Editorial')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Nueva Venta
+          </button>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <div class="stat-card-label">Ingresos del Mes</div>
+            <div class="stat-card-icon" style="background:rgba(212,175,55,.1)"><svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          </div>
+          <div class="stat-card-value" id="stat-ingresos">S/ 18,450</div>
+          <div class="stat-card-change stat-up">↑ 23% vs mes anterior</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <div class="stat-card-label">Leads Captados</div>
+            <div class="stat-card-icon" style="background:rgba(56,217,138,.08)"><svg viewBox="0 0 24 24" fill="none" stroke="#38d98a" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          </div>
+          <div class="stat-card-value" id="stat-leads">0</div>
+          <div class="stat-card-change stat-up">Nuevos registros</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <div class="stat-card-label">Clientes Activos</div>
+            <div class="stat-card-icon" style="background:rgba(90,174,255,.08)"><svg viewBox="0 0 24 24" fill="none" stroke="#5aaeff" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          </div>
+          <div class="stat-card-value">47</div>
+          <div class="stat-card-change stat-up">↑ 8 nuevos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <div class="stat-card-label">Utilidad Neta</div>
+            <div class="stat-card-icon" style="background:rgba(212,175,55,.1)"><svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          </div>
+          <div class="stat-card-value">S/ 9,870</div>
+          <div class="stat-card-change stat-up">↑ Margen 53.5%</div>
+        </div>
+      </div>
+
+      <!-- Ventas recientes -->
+      <div class="bo-table-wrap">
+        <div class="bo-table-head">
+          <div class="bo-table-title">Ventas Recientes</div>
+          <button class="bb bb-ghost">Ver todas →</button>
+        </div>
+        <table>
+          <thead><tr>
+            <th>Producto</th><th>Cliente</th><th>Categoría</th><th>Monto</th><th>Estado</th><th>Fecha</th>
+          </tr></thead>
+          <tbody>
+            <tr><td>Vestido Emerald Editorial</td><td>Andrea Castro</td><td>Boutique</td><td style="color:var(--dorado);font-weight:700">S/ 890</td><td><span class="chip chip-green">Completado</span></td><td>15 May 2026</td></tr>
+            <tr><td>Asesoría Personal de Imagen</td><td>María Torres</td><td>Servicio</td><td style="color:var(--dorado);font-weight:700">S/ 480</td><td><span class="chip chip-green">Completado</span></td><td>14 May 2026</td></tr>
+            <tr><td>Blazer Oversize Atelier</td><td>Carolina Vega</td><td>Boutique</td><td style="color:var(--dorado);font-weight:700">S/ 650</td><td><span class="chip chip-amber">En proceso</span></td><td>13 May 2026</td></tr>
+            <tr><td>Masterclass Imagen Ejecutiva</td><td>Sofía Mendoza</td><td>Curso</td><td style="color:var(--dorado);font-weight:700">S/ 350</td><td><span class="chip chip-green">Completado</span></td><td>12 May 2026</td></tr>
+            <tr><td>Personal Shopper Premium</td><td>Patricia Guzmán</td><td>Servicio</td><td style="color:var(--dorado);font-weight:700">S/ 750</td><td><span class="chip chip-blue">Agendado</span></td><td>11 May 2026</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- LEADS CRM -->
+    <div class="bo-page" id="page-leads">
+      <div class="bo-page-header">
+        <div>
+          <div class="bo-page-title">Leads & CRM</div>
+          <div class="bo-page-sub">Gestión de prospectos y clientes potenciales</div>
+        </div>
+        <div class="bo-actions">
+          <button class="bb bb-outline" onclick="exportLeadsCSV()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Exportar CSV
+          </button>
+        </div>
+      </div>
+      <div class="bo-table-wrap">
+        <div class="bo-table-head">
+          <div class="bo-table-title">Leads Registrados</div>
+          <input class="bo-input" placeholder="Buscar lead..." style="width:200px;padding:6px 10px;font-size:11px" oninput="filterLeads(this.value)"/>
+        </div>
+        <table>
+          <thead><tr>
+            <th>Nombre</th><th>Email</th><th>Celular</th><th>Instagram</th><th>Interés</th><th>Ciudad</th><th>Estado</th><th>WhatsApp</th>
+          </tr></thead>
+          <tbody id="leads-table-body">
+            <tr><td colspan="8" style="text-align:center;padding:32px;color:var(--bo-muted)">No hay leads registrados aún</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CLIENTES -->
+    <div class="bo-page" id="page-clientes">
+      <div class="bo-page-header">
+        <div>
+          <div class="bo-page-title">CRM de Clientes</div>
+          <div class="bo-page-sub">Base de datos de clientes activos y VIP</div>
+        </div>
+        <div class="bo-actions">
+          <button class="bb bb-primary" onclick="addClienteModal()">+ Nuevo Cliente</button>
+        </div>
+      </div>
+      <div class="bo-table-wrap">
+        <table>
+          <thead><tr>
+            <th>Cliente</th><th>Celular</th><th>Email</th><th>Instagram</th><th>Ciudad</th><th>Categoría</th><th>Historial</th><th>Notas</th>
+          </tr></thead>
+          <tbody>
+            <tr><td><strong>Andrea Castro</strong></td><td>+51 987 654 321</td><td>andrea@mail.com</td><td>@andreacastro</td><td>Lima</td><td><span class="chip chip-amber">VIP</span></td><td>5 servicios</td><td>Prefiere verde y neutros</td></tr>
+            <tr><td><strong>María Torres</strong></td><td>+51 912 345 678</td><td>maria@mail.com</td><td>@mariaft</td><td>Trujillo</td><td><span class="chip chip-green">Activa</span></td><td>2 servicios</td><td>Empresaria retail</td></tr>
+            <tr><td><strong>Carolina Vega</strong></td><td>+51 945 678 012</td><td>carolina@mail.com</td><td>@carolinav</td><td>Lima</td><td><span class="chip chip-green">Activa</span></td><td>3 servicios</td><td>Corporativo</td></tr>
+            <tr><td><strong>Sofía Mendoza</strong></td><td>+51 923 456 789</td><td>sofia@mail.com</td><td>@sofiamendoza</td><td>Lima</td><td><span class="chip chip-blue">Nueva</span></td><td>1 servicio</td><td>—</td></tr>
+            <tr><td><strong>Patricia Guzmán</strong></td><td>+51 956 789 012</td><td>patricia@mail.com</td><td>@patriciag</td><td>Arequipa</td><td><span class="chip chip-amber">VIP</span></td><td>7 servicios</td><td>CEO. Alta fidelidad.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PRODUCTOS -->
+    <div class="bo-page" id="page-productos">
+      <div class="bo-page-header">
+        <div>
+          <div class="bo-page-title">Gestión de Productos</div>
+          <div class="bo-page-sub">Inventario de la Boutique ESSENCE</div>
+        </div>
+        <div class="bo-actions">
+          <button class="bb bb-primary" onclick="showAddProduct()">+ Agregar Producto</button>
+        </div>
+      </div>
+      <div id="add-product-form" style="display:none;background:var(--bo-surface);border:1px solid var(--bo-border);border-radius:8px;padding:20px;margin-bottom:18px">
+        <div style="font-size:13px;font-weight:700;color:var(--bo-text);margin-bottom:14px;font-family:var(--font-head)">Nuevo Producto</div>
+        <div class="bo-form-grid">
+          <div class="bo-form-field"><label class="bo-label">Nombre</label><input class="bo-input" id="p-name" placeholder="Nombre del producto"/></div>
+          <div class="bo-form-field"><label class="bo-label">Categoría</label>
+            <select class="bo-select bo-input" id="p-cat">
+              <option>Vestidos</option><option>Blazers</option><option>Accesorios</option><option>Outfits</option><option>Otros</option>
+            </select>
+          </div>
+          <div class="bo-form-field"><label class="bo-label">Precio Venta (S/)</label><input class="bo-input" type="number" id="p-price" placeholder="0.00"/></div>
+          <div class="bo-form-field"><label class="bo-label">Stock</label><input class="bo-input" type="number" id="p-stock" placeholder="0"/></div>
+          <div class="bo-form-field full" style="flex-direction:row;gap:10px;align-items:flex-end">
+            <button class="bb bb-primary" onclick="addProduct()">Guardar Producto</button>
+            <button class="bb bb-ghost" onclick="document.getElementById('add-product-form').style.display='none'">Cancelar</button>
+          </div>
+        </div>
+      </div>
+      <div class="bo-table-wrap">
+        <table>
+          <thead><tr>
+            <th>Producto</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Estado</th><th>Acciones</th>
+          </tr></thead>
+          <tbody id="products-table-body">
+            <tr><td>Vestido Emerald Editorial</td><td>Vestidos</td><td style="color:var(--dorado);font-weight:600">S/ 890</td><td>8</td><td><span class="chip chip-green">Disponible</span></td><td><button class="bb bb-ghost bb-sm" onclick="showNotif('Producto','Editando: Vestido Emerald Editorial')">Editar</button></td></tr>
+            <tr><td>Blazer Oversize Atelier</td><td>Blazers</td><td style="color:var(--dorado);font-weight:600">S/ 650</td><td>4</td><td><span class="chip chip-amber">Poco stock</span></td><td><button class="bb bb-ghost bb-sm">Editar</button></td></tr>
+            <tr><td>Bolso Cuero Napa Premium</td><td>Accesorios</td><td style="color:var(--dorado);font-weight:600">S/ 1,290</td><td>2</td><td><span class="chip chip-red">Stock bajo</span></td><td><button class="bb bb-ghost bb-sm">Editar</button></td></tr>
+            <tr><td>Conjunto Ejecutivo Sage</td><td>Outfits</td><td style="color:var(--dorado);font-weight:600">S/ 1,480</td><td>6</td><td><span class="chip chip-green">Disponible</span></td><td><button class="bb bb-ghost bb-sm">Editar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MOTOR DE COSTEO -->
+    <div class="bo-page" id="page-costeo">
+      <div class="bo-page-header">
+        <div>
+          <div class="bo-page-title">Motor de Costeo Automático</div>
+          <div class="bo-page-sub">Calcula rentabilidad y precio de venta en tiempo real</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div class="bo-table-wrap" style="padding:20px">
+          <div style="font-size:13px;font-weight:700;color:var(--bo-text);margin-bottom:16px;font-family:var(--font-head)">Parámetros de Costeo</div>
+          <div class="bo-form-grid" style="grid-template-columns:1fr">
+            <div class="bo-form-field"><label class="bo-label">Precio de Compra (S/)</label><input class="bo-input" type="number" id="c-compra" value="0" oninput="calcCosto()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Flete / Envío (S/)</label><input class="bo-input" type="number" id="c-flete" value="0" oninput="calcCosto()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Otros Gastos (S/)</label><input class="bo-input" type="number" id="c-otros" value="0" oninput="calcCosto()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Margen Deseado (%)</label><input class="bo-input" type="number" id="c-margen" value="55" oninput="calcCosto()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Descuento (%)</label><input class="bo-input" type="number" id="c-descuento" value="0" oninput="calcCosto()"/></div>
+            <div style="border-top:1px solid var(--bo-border);padding-top:14px;margin-top:4px">
+              <div style="font-size:11px;font-weight:700;color:var(--dorado);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">⚙ Comisiones Izipay</div>
+              <div class="bo-form-field"><label class="bo-label">Débito (%)</label><input class="bo-input" type="number" step="0.01" id="iz-debito" value="2.5" oninput="saveIzipayRates();calcCosto()"/></div>
+              <div class="bo-form-field"><label class="bo-label">Crédito 1 cuota (%)</label><input class="bo-input" type="number" step="0.01" id="iz-credito" value="3.5" oninput="saveIzipayRates();calcCosto()"/></div>
+              <div class="bo-form-field"><label class="bo-label">Crédito cuotas (%)</label><input class="bo-input" type="number" step="0.01" id="iz-cuotas" value="4.5" oninput="saveIzipayRates();calcCosto()"/></div>
+              <div class="bo-form-field"><label class="bo-label">Modo activo</label>
+                <select class="bo-select bo-input" id="iz-modo" onchange="saveIzipayRates();calcCosto()">
+                  <option value="debito">Débito</option>
+                  <option value="credito" selected>Crédito 1 cuota</option>
+                  <option value="cuotas">Crédito cuotas</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="cost-table">
+            <table>
+              <tbody>
+                <tr><td style="color:var(--bo-muted)">Precio de Compra</td><td id="r-compra">S/ 0.00</td></tr>
+                <tr><td style="color:var(--bo-muted)">Flete</td><td id="r-flete">S/ 0.00</td></tr>
+                <tr><td style="color:var(--bo-muted)">Otros Gastos</td><td id="r-otros">S/ 0.00</td></tr>
+                <tr style="background:rgba(212,175,55,.04)"><td><strong style="color:var(--bo-text)">Costo Total</strong></td><td id="r-costo-total" style="color:var(--dorado)">S/ 0.00</td></tr>
+                <tr><td style="color:var(--bo-muted)">Precio sin Descuento</td><td id="r-precio-sin">S/ 0.00</td></tr>
+                <tr><td style="color:var(--bo-muted)">IGV (18%)</td><td id="r-igv">S/ 0.00</td></tr>
+                <tr><td style="color:var(--bo-muted)" id="r-izipay-label">Comisión Izipay (3.5%)</td><td id="r-izipay">S/ 0.00</td></tr>
+                <tr><td style="color:var(--bo-muted)">Descuento aplicado</td><td id="r-descuento">S/ 0.00</td></tr>
+              </tbody>
+            </table>
+            <div class="cost-result">
+              <div>
+                <div class="cost-result-label">Precio Venta Final</div>
+                <div style="font-size:10px;color:var(--bo-muted);margin-top:3px" id="r-margen-real">Margen neto: 0%</div>
+              </div>
+              <div class="cost-result-value" id="r-precio-final">S/ 0.00</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;padding:14px 16px;background:var(--bo-surface);border:1px solid var(--bo-border);border-radius:8px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+              <span style="font-size:10px;color:var(--bo-muted);text-transform:uppercase;letter-spacing:1.5px">Utilidad Neta</span>
+              <span style="font-weight:700;font-size:15px;color:#38d98a" id="r-utilidad">S/ 0.00</span>
+            </div>
+            <div style="display:flex;justify-content:space-between">
+              <span style="font-size:10px;color:var(--bo-muted);text-transform:uppercase;letter-spacing:1.5px">ROI</span>
+              <span style="font-weight:700;font-size:13px;color:var(--dorado)" id="r-roi">0%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VENTAS -->
+    <div class="bo-page" id="page-ventas">
+      <div class="bo-page-header">
+        <div>
+          <div class="bo-page-title">Registro de Ventas</div>
+          <div class="bo-page-sub">Historial completo de transacciones</div>
+        </div>
+        <div class="bo-actions">
+          <button class="bb bb-primary" onclick="showNotif('Nueva Venta','Agrega los datos de la venta.')">+ Registrar Venta</button>
+        </div>
+      </div>
+      <div class="bo-table-wrap">
+        <table>
+          <thead><tr>
+            <th>#</th><th>Producto / Servicio</th><th>Cliente</th><th>Monto</th><th>Categoría</th><th>Método Pago</th><th>Estado</th><th>Fecha</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="color:var(--bo-muted)">#0012</td><td>Vestido Emerald Editorial</td><td>Andrea Castro</td><td style="color:var(--dorado);font-weight:700">S/ 890</td><td><span class="chip chip-blue">Boutique</span></td><td>Izipay</td><td><span class="chip chip-green">Pagado</span></td><td>15 May 26</td></tr>
+            <tr><td style="color:var(--bo-muted)">#0011</td><td>Asesoría Personal</td><td>María Torres</td><td style="color:var(--dorado);font-weight:700">S/ 480</td><td><span class="chip chip-amber">Servicio</span></td><td>Transferencia</td><td><span class="chip chip-green">Pagado</span></td><td>14 May 26</td></tr>
+            <tr><td style="color:var(--bo-muted)">#0010</td><td>Blazer Oversize Atelier</td><td>Carolina Vega</td><td style="color:var(--dorado);font-weight:700">S/ 650</td><td><span class="chip chip-blue">Boutique</span></td><td>Efectivo</td><td><span class="chip chip-amber">Pendiente</span></td><td>13 May 26</td></tr>
+            <tr><td style="color:var(--bo-muted)">#0009</td><td>Masterclass Ejecutiva</td><td>Sofía Mendoza</td><td style="color:var(--dorado);font-weight:700">S/ 350</td><td><span class="chip chip-green">Curso</span></td><td>Izipay</td><td><span class="chip chip-green">Pagado</span></td><td>12 May 26</td></tr>
+            <tr><td style="color:var(--bo-muted)">#0008</td><td>Personal Shopper</td><td>Patricia Guzmán</td><td style="color:var(--dorado);font-weight:700">S/ 750</td><td><span class="chip chip-amber">Servicio</span></td><td>Transferencia</td><td><span class="chip chip-blue">Agendado</span></td><td>11 May 26</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- DASHBOARD FINANCIERO -->
+    <div class="bo-page" id="page-finanzas">
+      <div class="bo-page-header">
+        <div>
+          <div class="bo-page-title">Dashboard Financiero</div>
+          <div class="bo-page-sub">Estado de resultados · Mayo 2026</div>
+        </div>
+        <div class="bo-actions">
+          <select class="bo-select" style="padding:7px 12px;font-size:11px;border-radius:5px">
+            <option>Mayo 2026</option><option>Abril 2026</option><option>Q1 2026</option><option>Anual 2026</option>
+          </select>
+          <button class="bb bb-outline">Exportar PDF</button>
+        </div>
+      </div>
+      <div class="fin-grid">
+        <div class="fin-card">
+          <div class="fin-card-label">Ingresos Totales</div>
+          <div class="fin-card-value pos">S/ 18,450</div>
+        </div>
+        <div class="fin-card">
+          <div class="fin-card-label">Egresos Totales</div>
+          <div class="fin-card-value neg">S/ 8,580</div>
+        </div>
+        <div class="fin-card">
+          <div class="fin-card-label">Utilidad Bruta</div>
+          <div class="fin-card-value gold">S/ 9,870</div>
+        </div>
+        <div class="fin-card">
+          <div class="fin-card-label">Margen Promedio</div>
+          <div class="fin-card-value gold">53.5%</div>
+        </div>
+        <div class="fin-card">
+          <div class="fin-card-label">Ticket Promedio</div>
+          <div class="fin-card-value">S/ 692</div>
+        </div>
+        <div class="fin-card">
+          <div class="fin-card-label">Transacciones</div>
+          <div class="fin-card-value">27</div>
+        </div>
+      </div>
+      <div class="bo-table-wrap" style="margin-top:4px">
+        <div class="bo-table-head">
+          <div class="bo-table-title">Estado de Resultados</div>
+        </div>
+        <table>
+          <thead><tr><th>Concepto</th><th>Ingresos</th><th>Egresos</th><th>Neto</th><th>Margen</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Boutique / Ventas</strong></td><td style="color:#38d98a">S/ 10,200</td><td style="color:#e05555">S/ 5,100</td><td style="color:var(--dorado);font-weight:700">S/ 5,100</td><td><span class="chip chip-green">50%</span></td></tr>
+            <tr><td><strong>Servicios Asesoría</strong></td><td style="color:#38d98a">S/ 5,760</td><td style="color:#e05555">S/ 1,440</td><td style="color:var(--dorado);font-weight:700">S/ 4,320</td><td><span class="chip chip-green">75%</span></td></tr>
+            <tr><td><strong>Cursos & Talleres</strong></td><td style="color:#38d98a">S/ 2,490</td><td style="color:#e05555">S/ 2,040</td><td style="color:var(--dorado);font-weight:700">S/ 450</td><td><span class="chip chip-amber">18%</span></td></tr>
+            <tr style="background:rgba(212,175,55,.04)"><td><strong>TOTAL</strong></td><td style="color:#38d98a;font-weight:700">S/ 18,450</td><td style="color:#e05555;font-weight:700">S/ 8,580</td><td style="color:var(--dorado);font-weight:700;font-size:14px">S/ 9,870</td><td><span class="chip chip-amber">53.5%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CONTENIDO -->
+    <div class="bo-page" id="page-contenido">
+      <div class="bo-page-header">
+        <div>
+          <div class="bo-page-title">Panel de Contenido</div>
+          <div class="bo-page-sub">Mini CMS — edita el sitio público sin tocar código</div>
+        </div>
+        <div class="bo-actions">
+          <button class="bb bb-outline" onclick="resetContent()">Restablecer</button>
+          <button class="bb bb-primary" onclick="saveContent()">💾 Guardar y Aplicar</button>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+
+        <!-- Hero & Marca -->
+        <div class="bo-table-wrap" style="padding:20px">
+          <div style="font-size:13px;font-weight:700;color:var(--bo-text);margin-bottom:16px;font-family:var(--font-head)">🌟 Hero & Marca</div>
+          <div class="bo-form-grid" style="grid-template-columns:1fr">
+            <div class="bo-form-field"><label class="bo-label">Slogan Principal</label><input class="bo-input" id="c-slogan" value="ESSENCE · Estilo &amp; Lujo" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Subtítulo Hero</label><input class="bo-input" id="c-hero-sub" value="Tu transformación comienza aquí · Lima, Perú" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Texto CTA Principal</label><input class="bo-input" id="c-hero-cta" value="Agenda tu Asesoría" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">WhatsApp número</label><input class="bo-input" id="c-wa" value="+51 999 999 999" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Email de contacto</label><input class="bo-input" id="c-email" value="hola@essence.pe" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Ciudad / Ubicación</label><input class="bo-input" id="c-ciudad" value="Lima, Perú" oninput="livePreview()"/></div>
+          </div>
+        </div>
+
+        <!-- Bio CEO -->
+        <div class="bo-table-wrap" style="padding:20px">
+          <div style="font-size:13px;font-weight:700;color:var(--bo-text);margin-bottom:16px;font-family:var(--font-head)">👤 Bio de la Fundadora</div>
+          <div class="bo-form-grid" style="grid-template-columns:1fr">
+            <div class="bo-form-field"><label class="bo-label">Nombre completo</label><input class="bo-input" id="c-ceo-name" value="Valentina Morales" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Título / Rol</label><input class="bo-input" id="c-ceo-role" value="Fundadora &amp; CEO" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Firma / Signature</label><input class="bo-input" id="c-ceo-firma" value="Valentina M." oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Stat 1 (número)</label><input class="bo-input" id="c-stat1-n" value="500+" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Stat 1 (etiqueta)</label><input class="bo-input" id="c-stat1-l" value="Clientas" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Stat 2 (número)</label><input class="bo-input" id="c-stat2-n" value="12+" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Stat 2 (etiqueta)</label><input class="bo-input" id="c-stat2-l" value="Años de experiencia" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Bio (párrafo)</label><textarea class="bo-input" id="c-ceo-bio" rows="4" style="resize:vertical" oninput="livePreview()">Con más de 12 años transformando la imagen de ejecutivas...</textarea></div>
+            <div class="bo-form-field"><label class="bo-label">Frase inspiradora</label><textarea class="bo-input" id="c-ceo-quote" rows="2" style="resize:vertical" oninput="livePreview()">"El estilo es una forma de decir quién eres sin hablar."</textarea></div>
+          </div>
+        </div>
+
+        <!-- Redes Sociales -->
+        <div class="bo-table-wrap" style="padding:20px">
+          <div style="font-size:13px;font-weight:700;color:var(--bo-text);margin-bottom:16px;font-family:var(--font-head)">📱 Redes Sociales</div>
+          <div class="bo-form-grid" style="grid-template-columns:1fr">
+            <div class="bo-form-field"><label class="bo-label">Instagram</label><input class="bo-input" id="c-ig" value="@essence.estiloyluxo"/></div>
+            <div class="bo-form-field"><label class="bo-label">Facebook</label><input class="bo-input" id="c-fb" value="EssenceEstiloLujo"/></div>
+            <div class="bo-form-field"><label class="bo-label">YouTube</label><input class="bo-input" id="c-yt" value="EssencePeru"/></div>
+            <div class="bo-form-field"><label class="bo-label">TikTok</label><input class="bo-input" id="c-tt" value="@essence.lujo"/></div>
+            <div class="bo-form-field"><label class="bo-label">LinkedIn</label><input class="bo-input" id="c-li" value="Valentina Morales ESSENCE"/></div>
+          </div>
+        </div>
+
+        <!-- Imágenes -->
+        <div class="bo-table-wrap" style="padding:20px">
+          <div style="font-size:13px;font-weight:700;color:var(--bo-text);margin-bottom:16px;font-family:var(--font-head)">🖼 Gestión de Imágenes</div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="img-upload-row" data-key="img-ceo" data-target=".ceo-image-frame">
+              <div class="img-upload-label">Foto Fundadora (CEO)</div>
+              <div class="img-upload-area" onclick="triggerUpload('img-ceo','.ceo-image-frame')">
+                <div class="img-upload-preview" id="prev-img-ceo">📷 Sin imagen personalizada</div>
+                <div class="img-upload-hint">Clic para subir · JPG/PNG · Máx 2MB</div>
+              </div>
+              <input type="file" id="file-img-ceo" accept="image/*" style="display:none" onchange="handleImageUpload(this,'img-ceo','.ceo-image-frame','bg')"/>
+            </div>
+            <div class="img-upload-row" data-key="img-hero" data-target="#hero .hero-bg">
+              <div class="img-upload-label">Imagen de Portada (Hero)</div>
+              <div class="img-upload-area" onclick="triggerUpload('img-hero','#hero')">
+                <div class="img-upload-preview" id="prev-img-hero">📷 Sin imagen personalizada</div>
+                <div class="img-upload-hint">Clic para subir · Recomendado 1920×1080</div>
+              </div>
+              <input type="file" id="file-img-hero" accept="image/*" style="display:none" onchange="handleImageUpload(this,'img-hero','#hero','heroBg')"/>
+            </div>
+            <div class="img-upload-row" data-key="img-transf1-antes">
+              <div class="img-upload-label">Transformación 1 — Antes</div>
+              <div class="img-upload-area" onclick="triggerUpload('img-transf1-antes','')">
+                <div class="img-upload-preview" id="prev-img-transf1-antes">📷 Sin imagen personalizada</div>
+                <div class="img-upload-hint">Clic para subir</div>
+              </div>
+              <input type="file" id="file-img-transf1-antes" accept="image/*" style="display:none" onchange="handleImageUpload(this,'img-transf1-antes','#transf1-antes','img')"/>
+            </div>
+            <div class="img-upload-row" data-key="img-transf1-despues">
+              <div class="img-upload-label">Transformación 1 — Después</div>
+              <div class="img-upload-area" onclick="triggerUpload('img-transf1-despues','')">
+                <div class="img-upload-preview" id="prev-img-transf1-despues">📷 Sin imagen personalizada</div>
+                <div class="img-upload-hint">Clic para subir</div>
+              </div>
+              <input type="file" id="file-img-transf1-despues" accept="image/*" style="display:none" onchange="handleImageUpload(this,'img-transf1-despues','#transf1-despues','img')"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filosofia -->
+        <div class="bo-table-wrap" style="padding:20px">
+          <div style="font-size:13px;font-weight:700;color:var(--bo-text);margin-bottom:16px;font-family:var(--font-head)">💚 Sección Filosofía</div>
+          <div class="bo-form-grid" style="grid-template-columns:1fr">
+            <div class="bo-form-field"><label class="bo-label">Título línea 1</label><input class="bo-input" id="c-fil-t1" value="Cada mujer es" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Título línea 2 (italic dorado)</label><input class="bo-input" id="c-fil-t2" value="una obra de arte" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Título línea 3</label><input class="bo-input" id="c-fil-t3" value="esperando ser vista" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Párrafo filosofía</label><textarea class="bo-input" id="c-fil-texto" rows="4" style="resize:vertical" oninput="livePreview()">En ESSENCE creemos que el estilo es una forma de liderazgo silencioso...</textarea></div>
+          </div>
+        </div>
+
+        <!-- Precios Servicios -->
+        <div class="bo-table-wrap" style="padding:20px">
+          <div style="font-size:13px;font-weight:700;color:var(--bo-text);margin-bottom:16px;font-family:var(--font-head)">💰 Precios de Servicios</div>
+          <div class="bo-form-grid" style="grid-template-columns:1fr 1fr">
+            <div class="bo-form-field"><label class="bo-label">Masterclass (S/)</label><input class="bo-input" type="number" id="c-p-masterclass" value="350" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Workshop Color. (S/)</label><input class="bo-input" type="number" id="c-p-workshop" value="180" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Bootcamp VIP (S/)</label><input class="bo-input" type="number" id="c-p-bootcamp" value="890" oninput="livePreview()"/></div>
+            <div class="bo-form-field"><label class="bo-label">Asesoría Personal (S/)</label><input class="bo-input" type="number" id="c-p-asesoria" value="480" oninput="livePreview()"/></div>
+          </div>
+        </div>
+
+        <!-- Alertas -->
+        <div class="bo-table-wrap" style="padding:20px">
+          <div style="font-size:13px;font-weight:700;color:var(--bo-text);margin-bottom:16px;font-family:var(--font-head)">🔔 Alertas del Sistema</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--bo-surface2);border-radius:5px">
+              <span style="font-size:11px;color:var(--bo-text)">Alerta stock bajo (&lt;3 unidades)</span>
+              <span class="chip chip-green">Activa</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--bo-surface2);border-radius:5px">
+              <span style="font-size:11px;color:var(--bo-text)">Notif. nuevo lead</span>
+              <span class="chip chip-green">Activa</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--bo-surface2);border-radius:5px">
+              <span style="font-size:11px;color:var(--bo-text)">Reporte diario WhatsApp</span>
+              <span class="chip chip-amber">Config.</span>
+            </div>
+          </div>
+          <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--bo-border)">
+            <button class="bb bb-ghost" style="width:100%;justify-content:center" onclick="clearAllData()">🗑 Borrar todos los datos guardados</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main><!-- /bo-main -->
+</div><!-- /backoffice -->
+
+<!-- NOTIFICATION TOAST -->
+<div class="notification" id="notification">
+  <div class="notification-title" id="notif-title"></div>
+  <div class="notification-msg" id="notif-msg"></div>
+</div>
+
+<!-- ════════════════ JAVASCRIPT ════════════════ -->
+<script>
+// ══ DATA ══
+let leads = JSON.parse(localStorage.getItem('essence_leads') || '[]');
+let products = JSON.parse(localStorage.getItem('essence_products') || '[]');
+let session = localStorage.getItem('essence_session');
+
+// ══ INIT ══
+document.addEventListener('DOMContentLoaded', () => {
+  // Set current date in bo
+  const now = new Date();
+  const el = document.getElementById('bo-date');
+  if(el) el.textContent = now.toLocaleDateString('es-PE',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  
+  // Check session
+  if(session === 'ESSENCE_ADMIN') {
+    showBackoffice();
+  }
+
+  // Update leads count
+  updateLeadsCount();
+
+  // Scroll reveal
+  initReveal();
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    const nb = document.getElementById('navbar');
+    if(nb) nb.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Cost calculator init
+  calcCosto();
+
+  // ── PERSISTENCE: Load all saved data ──
+  loadContent();     // Load saved text content + apply to frontend
+  loadImages();      // Load saved images (base64) + apply to DOM
+  loadIzipayRates(); // Load saved Izipay commission rates
+  
+  // ── Live Clock ──
+  startClock();
+});
+
+// ══ NAVIGATION ══
+function smoothScroll(id) {
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth'});
+  return false;
+}
+function scrollToTop() {
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleMenu() {/* mobile menu placeholder */}
+
+// ══ ADMIN LOGIN ══
+function openAdmin() {
+  document.getElementById('login-modal').classList.add('open');
+}
+function closeLogin() {
+  document.getElementById('login-modal').classList.remove('open');
+}
+function doLogin() {
+  const u = document.getElementById('login-user').value.trim();
+  const p = document.getElementById('login-pass').value;
+  if(u === 'ESSENCE_ADMIN' && p === 'EssenceLuxury2026!') {
+    localStorage.setItem('essence_session','ESSENCE_ADMIN');
+    session = 'ESSENCE_ADMIN';
+    closeLogin();
+    showBackoffice();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+  }
+}
+document.addEventListener('keydown', e => {
+  if(e.key === 'Enter' && document.getElementById('login-modal').classList.contains('open')) doLogin();
+});
+
+function showBackoffice() {
+  document.getElementById('frontend').classList.remove('active');
+  document.getElementById('frontend').style.display='none';
+  document.getElementById('bo').classList.add('active');
+  document.getElementById('bo').style.display='flex';
+}
+function logout() {
+  localStorage.removeItem('essence_session');
+  session = null;
+  document.getElementById('bo').classList.remove('active');
+  document.getElementById('bo').style.display='none';
+  document.getElementById('frontend').style.display='block';
+  document.getElementById('frontend').classList.add('active');
+}
+
+// ══ BO NAVIGATION ══
+function boPage(id) {
+  document.querySelectorAll('.bo-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.bo-link').forEach(l => l.classList.remove('active'));
+  const page = document.getElementById('page-' + id);
+  if(page) page.classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ══ LEAD FORM ══
+function submitLead(e) {
+  e.preventDefault();
+  const lead = {
+    id: Date.now(),
+    nombre: document.getElementById('lead-name').value,
+    email: document.getElementById('lead-email').value,
+    celular: document.getElementById('lead-phone').value,
+    instagram: document.getElementById('lead-instagram').value,
+    interes: document.getElementById('lead-interest').value,
+    ciudad: document.getElementById('lead-city').value,
+    mensaje: document.getElementById('lead-message').value,
+    fecha: new Date().toLocaleDateString('es-PE'),
+    estado: 'Nuevo'
+  };
+  leads.push(lead);
+  localStorage.setItem('essence_leads', JSON.stringify(leads));
+  updateLeadsCount();
+  renderLeadsTable();
+  showNotif('🌿 Nuevo Lead Registrado', lead.nombre + ' — ' + lead.email);
+  // Reset form
+  e.target.reset();
+  // WhatsApp redirect
+  const waMsg = encodeURIComponent(`Hola, soy ${lead.nombre}. Me registré en ESSENCE y me interesa: ${lead.interes}. Mi contacto: ${lead.celular}`);
+  setTimeout(() => {
+    window.open(`https://wa.me/51999999999?text=${waMsg}`, '_blank');
+  }, 1000);
+  return false;
+}
+
+function updateLeadsCount() {
+  const badge = document.getElementById('leads-badge');
+  const stat = document.getElementById('stat-leads');
+  if(badge) badge.textContent = leads.length;
+  if(stat) stat.textContent = leads.length;
+}
+
+function renderLeadsTable() {
+  const tbody = document.getElementById('leads-table-body');
+  if(!tbody) return;
+  if(leads.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:32px;color:var(--bo-muted)">No hay leads registrados aún</td></tr>';
+    return;
+  }
+  tbody.innerHTML = leads.map(l => `
+    <tr>
+      <td><strong>${l.nombre}</strong></td>
+      <td>${l.email}</td>
+      <td>${l.celular || '—'}</td>
+      <td>${l.instagram || '—'}</td>
+      <td><span class="chip chip-amber">${l.interes || '—'}</span></td>
+      <td>${l.ciudad || '—'}</td>
+      <td><span class="chip chip-blue">Nuevo</span></td>
+      <td><a href="https://wa.me/${(l.celular||'').replace(/\D/g,'')}?text=Hola%20${encodeURIComponent(l.nombre)},%20te%20contacta%20el%20equipo%20de%20ESSENCE." target="_blank" style="color:var(--dorado);text-decoration:none;font-size:11px;font-weight:600">→ WA</a></td>
+    </tr>
+  `).join('');
+}
+
+function filterLeads(q) {
+  const rows = document.querySelectorAll('#leads-table-body tr');
+  rows.forEach(r => {
+    r.style.display = r.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
+  });
+}
+
+function exportLeadsCSV() {
+  if(leads.length === 0){ showNotif('Sin datos','No hay leads para exportar.'); return; }
+  const h = ['Nombre','Email','Celular','Instagram','Interés','Ciudad','Fecha'];
+  const rows = leads.map(l => [l.nombre,l.email,l.celular,l.instagram,l.interes,l.ciudad,l.fecha].join(','));
+  const csv = [h.join(','), ...rows].join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download = 'essence_leads.csv';
+  a.click();
+}
+
+// ══ COST CALCULATOR ══
+function calcCosto() {
+  const compra = +document.getElementById('c-compra').value || 0;
+  const flete = +document.getElementById('c-flete').value || 0;
+  const otros = +document.getElementById('c-otros').value || 0;
+  const margen = (+document.getElementById('c-margen').value || 55) / 100;
+  const descPct = (+document.getElementById('c-descuento').value || 0) / 100;
+
+  // Dynamic Izipay rates
+  const izRates = {
+    debito:  +(document.getElementById('iz-debito')||{value:2.5}).value  / 100 || 0.025,
+    credito: +(document.getElementById('iz-credito')||{value:3.5}).value / 100 || 0.035,
+    cuotas:  +(document.getElementById('iz-cuotas')||{value:4.5}).value  / 100 || 0.045
+  };
+  const modo = (document.getElementById('iz-modo')||{value:'credito'}).value;
+  const izRate = izRates[modo] || 0.035;
+  const izLabel = document.getElementById('r-izipay-label');
+  if(izLabel) izLabel.textContent = 'Comisión Izipay (' + (izRate*100).toFixed(2) + '% · ' + (modo==='debito'?'Débito':modo==='cuotas'?'Cuotas':'Crédito') + ')';
+
+  const costoTotal = compra + flete + otros;
+  const precioBase = margen < 1 ? costoTotal / (1 - margen) : costoTotal;
+  const igv = precioBase * 0.18;
+  const izipay = precioBase * izRate;
+  const precioConImpuestos = precioBase + igv + izipay;
+  const descuento = precioConImpuestos * descPct;
+  const precioFinal = precioConImpuestos - descuento;
+  const utilidad = precioFinal - costoTotal;
+  const margenReal = precioFinal > 0 ? (utilidad / precioFinal * 100) : 0;
+  const roi = costoTotal > 0 ? (utilidad / costoTotal * 100) : 0;
+
+  const fmt = v => 'S/ ' + v.toFixed(2);
+  document.getElementById('r-compra').textContent = fmt(compra);
+  document.getElementById('r-flete').textContent = fmt(flete);
+  document.getElementById('r-otros').textContent = fmt(otros);
+  document.getElementById('r-costo-total').textContent = fmt(costoTotal);
+  document.getElementById('r-precio-sin').textContent = fmt(precioBase);
+  document.getElementById('r-igv').textContent = fmt(igv);
+  document.getElementById('r-izipay').textContent = fmt(izipay);
+  document.getElementById('r-descuento').textContent = '-' + fmt(descuento);
+  document.getElementById('r-precio-final').textContent = fmt(precioFinal);
+  document.getElementById('r-margen-real').textContent = 'Margen neto: ' + margenReal.toFixed(1) + '%';
+  document.getElementById('r-utilidad').textContent = fmt(utilidad);
+  document.getElementById('r-roi').textContent = roi.toFixed(1) + '%';
+}
+
+// ══ PRODUCTS ══
+function showAddProduct() {
+  document.getElementById('add-product-form').style.display = 'block';
+}
+function addProduct() {
+  const name = document.getElementById('p-name').value.trim();
+  const cat = document.getElementById('p-cat').value;
+  const price = document.getElementById('p-price').value;
+  const stock = document.getElementById('p-stock').value;
+  if(!name){ showNotif('Error','Por favor ingresa el nombre del producto.'); return; }
+  const product = {id: Date.now(), name, cat, price: +price, stock: +stock};
+  products.push(product);
+  localStorage.setItem('essence_products', JSON.stringify(products));
+  // Add row to table
+  const tbody = document.getElementById('products-table-body');
+  const tr = document.createElement('tr');
+  const stockChip = +stock <= 3 ? 'chip-red' : +stock <= 5 ? 'chip-amber' : 'chip-green';
+  const stockLabel = +stock <= 3 ? 'Stock bajo' : +stock <= 5 ? 'Poco stock' : 'Disponible';
+  tr.innerHTML = `<td>${name}</td><td>${cat}</td><td style="color:var(--dorado);font-weight:600">S/ ${price}</td><td>${stock}</td><td><span class="chip ${stockChip}">${stockLabel}</span></td><td><button class="bb bb-ghost">Editar</button></td>`;
+  tbody.appendChild(tr);
+  document.getElementById('add-product-form').style.display = 'none';
+  document.getElementById('p-name').value = '';
+  showNotif('✓ Producto Guardado', name + ' agregado exitosamente.');
+  if(+stock <= 3) showNotif('⚠ Stock Bajo', name + ' tiene solo ' + stock + ' unidades.');
+}
+
+// ══ CONTENT SAVE — PERSISTENCIA REAL ══
+function saveContent() {
+  const data = {
+    slogan:      (document.getElementById('c-slogan')||{}).value || '',
+    heroSub:     (document.getElementById('c-hero-sub')||{}).value || '',
+    heroCta:     (document.getElementById('c-hero-cta')||{}).value || '',
+    waNumber:    (document.getElementById('c-wa')||{}).value || '',
+    email:       (document.getElementById('c-email')||{}).value || '',
+    ciudad:      (document.getElementById('c-ciudad')||{}).value || '',
+    ceoName:     (document.getElementById('c-ceo-name')||{}).value || '',
+    ceoRole:     (document.getElementById('c-ceo-role')||{}).value || '',
+    ceoFirma:    (document.getElementById('c-ceo-firma')||{}).value || '',
+    ceoBio:      (document.getElementById('c-ceo-bio')||{}).value || '',
+    ceoQuote:    (document.getElementById('c-ceo-quote')||{}).value || '',
+    stat1n:      (document.getElementById('c-stat1-n')||{}).value || '',
+    stat1l:      (document.getElementById('c-stat1-l')||{}).value || '',
+    stat2n:      (document.getElementById('c-stat2-n')||{}).value || '',
+    stat2l:      (document.getElementById('c-stat2-l')||{}).value || '',
+    ig:          (document.getElementById('c-ig')||{}).value || '',
+    fb:          (document.getElementById('c-fb')||{}).value || '',
+    yt:          (document.getElementById('c-yt')||{}).value || '',
+    tt:          (document.getElementById('c-tt')||{}).value || '',
+    li:          (document.getElementById('c-li')||{}).value || '',
+    filT1:       (document.getElementById('c-fil-t1')||{}).value || '',
+    filT2:       (document.getElementById('c-fil-t2')||{}).value || '',
+    filT3:       (document.getElementById('c-fil-t3')||{}).value || '',
+    filTexto:    (document.getElementById('c-fil-texto')||{}).value || '',
+    pMasterclass:(document.getElementById('c-p-masterclass')||{}).value || '',
+    pWorkshop:   (document.getElementById('c-p-workshop')||{}).value || '',
+    pBootcamp:   (document.getElementById('c-p-bootcamp')||{}).value || '',
+    pAsesoria:   (document.getElementById('c-p-asesoria')||{}).value || ''
+  };
+  localStorage.setItem('essence_content', JSON.stringify(data));
+  applyContentToFrontend(data);
+  showNotif('✅ Guardado Exitosamente', 'Los cambios se aplicaron al sitio público.');
+}
+
+function resetContent() {
+  if(!confirm('¿Restablecer todos los textos a los valores originales? Las imágenes no se borrarán.')) return;
+  localStorage.removeItem('essence_content');
+  loadContent();
+  showNotif('↩ Contenido Restablecido', 'Los textos volvieron a sus valores originales.');
+}
+
+function clearAllData() {
+  if(!confirm('⚠ ¿Borrar TODOS los datos guardados (leads, imágenes, contenido, reservas)? Esta acción es irreversible.')) return;
+  const keep = ['essence_session','essence_dark','essence_popup_shown'];
+  Object.keys(localStorage).filter(k => k.startsWith('essence_') && !keep.includes(k))
+    .forEach(k => localStorage.removeItem(k));
+  showNotif('🗑 Datos Borrados', 'Se eliminaron todos los datos de ESSENCE.');
+  setTimeout(() => location.reload(), 1500);
+}
+
+function applyContentToFrontend(data) {
+  if(!data) return;
+  // Slogan / hero eyebrow
+  const eyeEl = document.querySelector('.hero-eyebrow');
+  if(eyeEl && data.slogan) eyeEl.innerHTML = data.slogan.replace('·','<span></span>');
+  // Hero sub
+  const heroSub = document.querySelector('.hero-sub');
+  if(heroSub && data.heroSub) heroSub.textContent = data.heroSub;
+  // CTA primary btn
+  const heroCta = document.querySelector('.btn-hero-primary');
+  if(heroCta && data.heroCta) heroCta.textContent = data.heroCta + ' →';
+  // CEO Name
+  document.querySelectorAll('.ceo-name').forEach(el => { if(data.ceoName) el.textContent = data.ceoName; });
+  // CEO Role
+  document.querySelectorAll('.ceo-role').forEach(el => { if(data.ceoRole) el.textContent = data.ceoRole; });
+  // CEO Signature
+  const sig = document.querySelector('.ceo-signature');
+  if(sig && data.ceoFirma) sig.textContent = data.ceoFirma;
+  // CEO Bio
+  const bio = document.querySelector('.ceo-bio');
+  if(bio && data.ceoBio) bio.textContent = data.ceoBio;
+  // CEO Quote
+  const quote = document.querySelector('.ceo-image-quote');
+  if(quote && data.ceoQuote) quote.textContent = data.ceoQuote;
+  // Stats
+  const statNs = document.querySelectorAll('.ceo-stat-n');
+  const statLs = document.querySelectorAll('.ceo-stat-l');
+  if(statNs[0] && data.stat1n) statNs[0].textContent = data.stat1n;
+  if(statLs[0] && data.stat1l) statLs[0].textContent = data.stat1l;
+  if(statNs[1] && data.stat2n) statNs[1].textContent = data.stat2n;
+  if(statLs[1] && data.stat2l) statLs[1].textContent = data.stat2l;
+  // Filosofia
+  const filTitle = document.querySelector('.filosofia-title');
+  if(filTitle && (data.filT1||data.filT2||data.filT3)) {
+    filTitle.innerHTML = (data.filT1||'') + '<br><em>' + (data.filT2||'') + '</em><br>' + (data.filT3||'');
+  }
+  const filText = document.querySelector('.filosofia-text');
+  if(filText && data.filTexto) filText.textContent = data.filTexto;
+  // WhatsApp links — update all wa.me links
+  if(data.waNumber) {
+    const waClean = data.waNumber.replace(/\D/g,'');
+    const waBtn = document.getElementById('wa-btn');
+    if(waBtn) waBtn.href = 'https://wa.me/' + waClean;
+    // Store for openWhatsApp
+    window._essenceWA = waClean;
+  }
+  // Course prices
+  const priceEls = document.querySelectorAll('.curso-price');
+  if(data.pMasterclass && priceEls[0]) priceEls[0].textContent = 'S/ ' + data.pMasterclass;
+  if(data.pWorkshop && priceEls[1]) priceEls[1].textContent = 'S/ ' + data.pWorkshop;
+  if(data.pBootcamp && priceEls[2]) priceEls[2].textContent = 'S/ ' + data.pBootcamp;
+}
+
+function livePreview() {
+  // Real-time preview while typing — debounced
+  clearTimeout(window._previewTimer);
+  window._previewTimer = setTimeout(() => {
+    const data = {
+      slogan:   (document.getElementById('c-slogan')||{}).value,
+      heroSub:  (document.getElementById('c-hero-sub')||{}).value,
+      heroCta:  (document.getElementById('c-hero-cta')||{}).value,
+      ceoName:  (document.getElementById('c-ceo-name')||{}).value,
+      ceoRole:  (document.getElementById('c-ceo-role')||{}).value,
+      ceoFirma: (document.getElementById('c-ceo-firma')||{}).value,
+      ceoBio:   (document.getElementById('c-ceo-bio')||{}).value,
+      ceoQuote: (document.getElementById('c-ceo-quote')||{}).value,
+      stat1n:   (document.getElementById('c-stat1-n')||{}).value,
+      stat1l:   (document.getElementById('c-stat1-l')||{}).value,
+      stat2n:   (document.getElementById('c-stat2-n')||{}).value,
+      stat2l:   (document.getElementById('c-stat2-l')||{}).value,
+      filT1:    (document.getElementById('c-fil-t1')||{}).value,
+      filT2:    (document.getElementById('c-fil-t2')||{}).value,
+      filT3:    (document.getElementById('c-fil-t3')||{}).value,
+      filTexto: (document.getElementById('c-fil-texto')||{}).value,
+      waNumber: (document.getElementById('c-wa')||{}).value,
+      pMasterclass: (document.getElementById('c-p-masterclass')||{}).value,
+      pWorkshop:    (document.getElementById('c-p-workshop')||{}).value,
+      pBootcamp:    (document.getElementById('c-p-bootcamp')||{}).value
+    };
+    applyContentToFrontend(data);
+  }, 300);
+}
+
+function loadContent() {
+  // Load persisted content from localStorage and populate form + frontend
+  const raw = localStorage.getItem('essence_content');
+  if(!raw) return;
+  try {
+    const data = JSON.parse(raw);
+    // Populate form fields
+    const setVal = (id, val) => { const el = document.getElementById(id); if(el && val !== undefined) el.value = val; };
+    setVal('c-slogan',        data.slogan);
+    setVal('c-hero-sub',      data.heroSub);
+    setVal('c-hero-cta',      data.heroCta);
+    setVal('c-wa',            data.waNumber);
+    setVal('c-email',         data.email);
+    setVal('c-ciudad',        data.ciudad);
+    setVal('c-ceo-name',      data.ceoName);
+    setVal('c-ceo-role',      data.ceoRole);
+    setVal('c-ceo-firma',     data.ceoFirma);
+    setVal('c-ceo-bio',       data.ceoBio);
+    setVal('c-ceo-quote',     data.ceoQuote);
+    setVal('c-stat1-n',       data.stat1n);
+    setVal('c-stat1-l',       data.stat1l);
+    setVal('c-stat2-n',       data.stat2n);
+    setVal('c-stat2-l',       data.stat2l);
+    setVal('c-ig',            data.ig);
+    setVal('c-fb',            data.fb);
+    setVal('c-yt',            data.yt);
+    setVal('c-tt',            data.tt);
+    setVal('c-li',            data.li);
+    setVal('c-fil-t1',        data.filT1);
+    setVal('c-fil-t2',        data.filT2);
+    setVal('c-fil-t3',        data.filT3);
+    setVal('c-fil-texto',     data.filTexto);
+    setVal('c-p-masterclass', data.pMasterclass);
+    setVal('c-p-workshop',    data.pWorkshop);
+    setVal('c-p-bootcamp',    data.pBootcamp);
+    setVal('c-p-asesoria',    data.pAsesoria);
+    // Apply to frontend
+    applyContentToFrontend(data);
+  } catch(e) { console.warn('essence_content parse error', e); }
+}
+
+// ══ IMAGE UPLOAD — BASE64 PERSISTENT STORAGE ══
+function triggerUpload(key, target) {
+  document.getElementById('file-' + key).click();
+}
+
+function handleImageUpload(input, key, selector, mode) {
+  const file = input.files[0];
+  if(!file) return;
+  if(file.size > 3 * 1024 * 1024) {
+    showNotif('⚠ Imagen demasiado grande', 'El máximo es 3MB. Comprime la imagen e intenta de nuevo.');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const base64 = e.target.result;
+    // Store in localStorage
+    try {
+      localStorage.setItem('essence_img_' + key, base64);
+    } catch(err) {
+      showNotif('⚠ Almacenamiento lleno', 'La imagen es demasiado grande para guardar. Usa una imagen más pequeña.');
+      return;
+    }
+    // Apply to DOM
+    applyImage(key, base64, selector, mode);
+    // Update preview
+    const prev = document.getElementById('prev-' + key);
+    if(prev) {
+      prev.innerHTML = '<img src="' + base64 + '" style="width:100%;height:60px;object-fit:cover;border-radius:4px;margin-top:4px"/>';
+    }
+    showNotif('✅ Imagen Guardada', file.name + ' — aplicada en el sitio.');
+  };
+  reader.readAsDataURL(file);
+}
+
+function applyImage(key, base64, selector, mode) {
+  if(!base64 || !selector) return;
+  if(mode === 'bg') {
+    const el = document.querySelector(selector);
+    if(el) {
+      const existing = el.style.background;
+      el.style.backgroundImage = 'url(' + base64 + ')';
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+    }
+  } else if(mode === 'img') {
+    const el = document.querySelector(selector);
+    if(el && el.tagName === 'IMG') el.src = base64;
+  } else if(mode === 'heroBg') {
+    // Hero gets overlay on top of image
+    const hero = document.getElementById('hero');
+    if(hero) {
+      hero.style.backgroundImage = 'url(' + base64 + ')';
+      hero.style.backgroundSize = 'cover';
+      hero.style.backgroundPosition = 'center';
+    }
+  }
+}
+
+function loadImages() {
+  // Image map: key → {selector, mode}
+  const imgMap = {
+    'img-ceo':            { selector: '.ceo-image-frame', mode: 'bg' },
+    'img-hero':           { selector: '#hero',            mode: 'heroBg' },
+    'img-transf1-antes':  { selector: '#transf1-antes',   mode: 'img' },
+    'img-transf1-despues':{ selector: '#transf1-despues', mode: 'img' }
+  };
+  Object.entries(imgMap).forEach(([key, cfg]) => {
+    const base64 = localStorage.getItem('essence_img_' + key);
+    if(base64) {
+      applyImage(key, base64, cfg.selector, cfg.mode);
+      const prev = document.getElementById('prev-' + key);
+      if(prev) prev.innerHTML = '<img src="' + base64 + '" style="width:100%;height:60px;object-fit:cover;border-radius:4px;margin-top:4px"/>';
+    }
+  });
+}
+
+// ══ IZIPAY RATES — PERSISTENT ══
+function saveIzipayRates() {
+  const rates = {
+    debito:  +(document.getElementById('iz-debito')||{value:2.5}).value,
+    credito: +(document.getElementById('iz-credito')||{value:3.5}).value,
+    cuotas:  +(document.getElementById('iz-cuotas')||{value:4.5}).value,
+    modo:    (document.getElementById('iz-modo')||{value:'credito'}).value
+  };
+  localStorage.setItem('essence_izipay', JSON.stringify(rates));
+}
+
+function loadIzipayRates() {
+  const raw = localStorage.getItem('essence_izipay');
+  if(!raw) return;
+  try {
+    const r = JSON.parse(raw);
+    const setV = (id,val) => { const el = document.getElementById(id); if(el) el.value = val; };
+    setV('iz-debito',  r.debito);
+    setV('iz-credito', r.credito);
+    setV('iz-cuotas',  r.cuotas);
+    setV('iz-modo',    r.modo);
+  } catch(e) {}
+}
+
+// ══ LIVE CLOCK ══
+function startClock() {
+  function tick() {
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2,'0');
+    const mm = String(now.getMinutes()).padStart(2,'0');
+    const ss = String(now.getSeconds()).padStart(2,'0');
+    const timeStr = hh + ':' + mm + ':' + ss;
+    const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+    const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    const dateStr = dias[now.getDay()] + ' ' + now.getDate() + ' ' + meses[now.getMonth()] + ' ' + now.getFullYear();
+    // Frontend clock
+    const lc = document.getElementById('live-clock');
+    const ld = document.getElementById('live-date');
+    if(lc) lc.textContent = timeStr;
+    if(ld) ld.textContent = dateStr;
+    // Backoffice clock
+    const bc = document.getElementById('bo-clock-time');
+    const bd = document.getElementById('bo-clock-date');
+    if(bc) bc.textContent = timeStr;
+    if(bd) bd.textContent = now.getDate() + ' ' + meses[now.getMonth()];
+  }
+  tick();
+  setInterval(tick, 1000);
+}
+
+// ══ UPDATED openWhatsApp — uses saved number ══
+function openWhatsApp(msg) {
+  const num = window._essenceWA || '51999999999';
+  window.open('https://wa.me/' + num + '?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// ══ EXPORT ══
+function exportReport() {
+  showNotif('Exportando...','Generando reporte PDF del mes.');
+}
+
+// ══ NOTIFICATIONS ══
+let notifTimer;
+function showNotif(title, msg) {
+  const n = document.getElementById('notification');
+  document.getElementById('notif-title').textContent = title;
+  document.getElementById('notif-msg').textContent = msg;
+  n.classList.add('show');
+  clearTimeout(notifTimer);
+  notifTimer = setTimeout(() => n.classList.remove('show'), 4000);
+}
+
+// ══ SCROLL REVEAL ══
+function initReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {threshold: 0.1, rootMargin: '0px 0px -50px 0px'});
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// ══ ADD CLIENTE MODAL ══
+function addClienteModal() {
+  document.getElementById('modal-cliente').style.display = 'flex';
+}
+function closeClienteModal() {
+  document.getElementById('modal-cliente').style.display = 'none';
+}
+function saveCliente() {
+  const n = document.getElementById('nc-name').value.trim();
+  if(!n){ showNotif('Error','Ingresa el nombre del cliente.'); return; }
+  const clientes = JSON.parse(localStorage.getItem('essence_clientes')||'[]');
+  clientes.push({
+    nombre: n, celular: document.getElementById('nc-cel').value,
+    email: document.getElementById('nc-email').value,
+    instagram: document.getElementById('nc-ig').value,
+    ciudad: document.getElementById('nc-ciudad').value,
+    categoria: document.getElementById('nc-cat').value,
+    notas: document.getElementById('nc-notas').value,
+    fecha: new Date().toLocaleDateString('es-PE')
+  });
+  localStorage.setItem('essence_clientes', JSON.stringify(clientes));
+  const tbody = document.querySelector('#page-clientes tbody');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td><strong>${clientes[clientes.length-1].nombre}</strong></td><td>${clientes[clientes.length-1].celular}</td><td>${clientes[clientes.length-1].email}</td><td>${clientes[clientes.length-1].instagram}</td><td>${clientes[clientes.length-1].ciudad}</td><td><span class="chip chip-blue">${clientes[clientes.length-1].categoria}</span></td><td>0 servicios</td><td>${clientes[clientes.length-1].notas||'—'}</td>`;
+  tbody.appendChild(tr);
+  closeClienteModal();
+  showNotif('✓ Cliente Guardado', clientes[clientes.length-1].nombre + ' agregado al CRM.');
+}
+
+// Init leads table when page loads
+renderLeadsTable();
+
+// ══ DARK/LIGHT MODE ══
+let darkMode = localStorage.getItem('essence_dark') === 'true';
+function toggleDark() {
+  darkMode = !darkMode;
+  localStorage.setItem('essence_dark', darkMode);
+  applyDark();
+}
+function applyDark() {
+  document.body.classList.toggle('dark-mode', darkMode);
+  const btn = document.getElementById('dark-toggle');
+  if(btn) btn.innerHTML = darkMode
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
+    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
+}
+applyDark();
+
+// ══ QUIZ DE ESTILO ══
+const quizData = [
+  { q: '¿Cómo describirías tu estilo actual?', opts: ['Clásico y formal','Moderno y minimalista','Romántico y femenino','Casual con toques de lujo'] },
+  { q: '¿Qué colores domina tu guardarropa?', opts: ['Neutros (negro, blanco, beige)','Tierra (verde, marrón, camel)','Colores vibrantes','Pasteles y suaves'] },
+  { q: '¿Cuál es tu mayor reto de imagen?', opts: ['No sé qué combinar','Mi ropa no refleja mi personalidad','No tengo ropa adecuada para mi trabajo','Quiero renovar completamente mi imagen'] },
+  { q: '¿Qué tipo de eventos son más importantes en tu vida?', opts: ['Reuniones corporativas','Eventos sociales y galas','Vida cotidiana premium','Viajes y life style'] },
+  { q: '¿Qué inversión estás dispuesta a hacer?', opts: ['Asesoría básica','Cambio de guardarropa completo','Servicio VIP todo incluido','Formación y talleres'] }
+];
+let quizStep = 0;
+let quizAnswers = [];
+function openQuiz() {
+  quizStep = 0; quizAnswers = [];
+  renderQuiz();
+  document.getElementById('modal-quiz').style.display = 'flex';
+}
+function closeQuiz() { document.getElementById('modal-quiz').style.display = 'none'; }
+function renderQuiz() {
+  const q = quizData[quizStep];
+  document.getElementById('quiz-step').textContent = (quizStep+1) + ' / ' + quizData.length;
+  document.getElementById('quiz-q').textContent = q.q;
+  document.getElementById('quiz-progress').style.width = ((quizStep/quizData.length)*100) + '%';
+  document.getElementById('quiz-opts').innerHTML = q.opts.map((o,i) =>
+    `<div class="quiz-opt" onclick="quizAnswer(${i})">${o}</div>`
+  ).join('');
+  document.getElementById('quiz-result').style.display = 'none';
+  document.getElementById('quiz-opts').style.display = 'grid';
+  document.getElementById('quiz-q-block').style.display = 'block';
+}
+function quizAnswer(idx) {
+  quizAnswers.push(quizData[quizStep].opts[idx]);
+  quizStep++;
+  if(quizStep < quizData.length) {
+    renderQuiz();
+  } else {
+    showQuizResult();
+  }
+}
+function showQuizResult() {
+  document.getElementById('quiz-opts').style.display = 'none';
+  document.getElementById('quiz-q-block').style.display = 'none';
+  document.getElementById('quiz-result').style.display = 'block';
+  document.getElementById('quiz-progress').style.width = '100%';
+  document.getElementById('quiz-step').textContent = '✓ Completado';
+  // Simple logic: first answer determines result
+  const profiles = ['Elegancia Clásica','Minimalismo Moderno','Femineidad Sofisticada','Lujo Casual'];
+  const profile = profiles[quizAnswers[0] ? quizData[0].opts.indexOf(quizAnswers[0]) : 0] || 'Estilo Único';
+  document.getElementById('quiz-result-title').textContent = 'Tu estilo es: ' + profile;
+  document.getElementById('quiz-result-desc').textContent = 'Basándonos en tus respuestas, diseñaremos una experiencia de asesoría completamente personalizada para ti. ¡Contáctanos para comenzar tu transformación!';
+}
+
+// ══ LOOKBOOK ══
+const lookbooks = [
+  { title: 'Colección Ejecutiva Primavera 2026', img: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=80', tag: 'Nueva' },
+  { title: 'Editorial: Verde & Dorado', img: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80', tag: 'Exclusivo' },
+  { title: 'Gala & Eventos de Lujo', img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80', tag: 'Premium' },
+  { title: 'Cápsula: Guardarropa Minimalista', img: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&q=80', tag: '10 piezas' },
+  { title: 'Dress Code Corporativo 2026', img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80', tag: 'Empresarial' },
+  { title: 'Outfits: Weekend Luxury', img: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80', tag: 'Lifestyle' }
+];
+function renderLookbooks() {
+  const grid = document.getElementById('lookbook-grid');
+  if(!grid) return;
+  grid.innerHTML = lookbooks.map(l => `
+    <div class="lookbook-card" onclick="downloadLookbook('${l.title}')">
+      <div class="lookbook-img" style="background-image:url('${l.img}')">
+        <div class="lookbook-tag">${l.tag}</div>
+        <div class="lookbook-overlay">
+          <div class="lookbook-dl-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" width="28" height="28"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            <div style="font-size:9px;color:rgba(255,255,255,.8);letter-spacing:2px;margin-top:8px;text-transform:uppercase">Descargar</div>
+          </div>
+        </div>
+      </div>
+      <div class="lookbook-info">
+        <div class="lookbook-title">${l.title}</div>
+      </div>
+    </div>
+  `).join('');
+}
+function downloadLookbook(title) {
+  showNotif('📖 Lookbook', '"' + title + '" se descargará próximamente.');
+  openWhatsApp('Hola, quiero descargar el lookbook: ' + title);
+}
+
+// ══ CALENDARIO DE RESERVAS ══
+let calYear = new Date().getFullYear();
+let calMonth = new Date().getMonth();
+const reservas = JSON.parse(localStorage.getItem('essence_reservas')||'[]');
+const datesWithReserva = new Set(reservas.map(r => r.fecha));
+function renderCalendar() {
+  const cal = document.getElementById('cal-grid');
+  const titulo = document.getElementById('cal-titulo');
+  if(!cal) return;
+  const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  titulo.textContent = meses[calMonth] + ' ' + calYear;
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+  const today = new Date();
+  let html = '<div class="cal-days-header">';
+  ['Do','Lu','Ma','Mi','Ju','Vi','Sa'].forEach(d => { html += `<div class="cal-day-name">${d}</div>`; });
+  html += '</div><div class="cal-days">';
+  for(let i=0;i<firstDay;i++) html += '<div class="cal-day empty"></div>';
+  for(let d=1;d<=daysInMonth;d++) {
+    const dateStr = calYear+'-'+(calMonth+1).toString().padStart(2,'0')+'-'+d.toString().padStart(2,'0');
+    const isToday = d===today.getDate() && calMonth===today.getMonth() && calYear===today.getFullYear();
+    const hasReserva = datesWithReserva.has(dateStr);
+    const isPast = new Date(calYear, calMonth, d) < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    html += `<div class="cal-day ${isToday?'today':''} ${hasReserva?'has-reserva':''} ${isPast?'past':''}" onclick="selectDate('${dateStr}',${d})">${d}${hasReserva?'<span class="cal-dot"></span>':''}</div>`;
+  }
+  html += '</div>';
+  cal.innerHTML = html;
+}
+function calPrev() { calMonth--; if(calMonth<0){calMonth=11;calYear--;} renderCalendar(); }
+function calNext() { calMonth++; if(calMonth>11){calMonth=0;calYear++;} renderCalendar(); }
+function selectDate(dateStr, day) {
+  document.querySelectorAll('.cal-day').forEach(d => d.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  document.getElementById('selected-date-label').textContent = 'Fecha seleccionada: ' + day + ' del mes actual';
+  document.getElementById('reserva-form-box').style.display = 'block';
+  document.getElementById('reserva-fecha-hidden').value = dateStr;
+}
+function saveReserva() {
+  const fecha = document.getElementById('reserva-fecha-hidden').value;
+  const nombre = document.getElementById('reserva-nombre').value.trim();
+  const servicio = document.getElementById('reserva-servicio').value;
+  const hora = document.getElementById('reserva-hora').value;
+  if(!nombre||!fecha){ showNotif('Error','Completa todos los campos.'); return; }
+  const r = {fecha, nombre, servicio, hora};
+  reservas.push(r);
+  datesWithReserva.add(fecha);
+  localStorage.setItem('essence_reservas', JSON.stringify(reservas));
+  renderCalendar();
+  renderReservasList();
+  document.getElementById('reserva-form-box').style.display = 'none';
+  showNotif('✓ Reserva Confirmada', nombre + ' · ' + servicio + ' · ' + fecha + ' ' + hora);
+}
+function renderReservasList() {
+  const ul = document.getElementById('reservas-list');
+  if(!ul) return;
+  if(reservas.length === 0) { ul.innerHTML = '<div style="color:var(--bo-muted);font-size:12px;padding:16px 0">No hay reservas registradas.</div>'; return; }
+  ul.innerHTML = reservas.slice(-6).reverse().map(r =>
+    `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bo-border)">
+      <div>
+        <div style="font-size:12px;font-weight:600;color:var(--bo-text)">${r.nombre}</div>
+        <div style="font-size:10px;color:var(--bo-muted);margin-top:2px;letter-spacing:.5px">${r.servicio} · ${r.hora}</div>
+      </div>
+      <span class="chip chip-amber">${r.fecha}</span>
+    </div>`
+  ).join('');
+}
+
+// ══ FINANCIAL CHART (SVG inline) ══
+function renderFinChart() {
+  const canvas = document.getElementById('fin-chart-svg');
+  if(!canvas) return;
+  const data = [12800,14200,11900,16500,13400,18450];
+  const labels = ['Dic','Ene','Feb','Mar','Abr','May'];
+  const max = Math.max(...data);
+  const W=480, H=160, pad=30;
+  const pts = data.map((v,i) => {
+    const x = pad + i*(W-pad*2)/5;
+    const y = H - pad - ((v/max)*(H-pad*2));
+    return {x,y,v};
+  });
+  const pathD = pts.map((p,i) => (i===0?`M${p.x},${p.y}`:`L${p.x},${p.y}`)).join(' ');
+  const areaD = `M${pts[0].x},${H-pad} ` + pts.map(p=>`L${p.x},${p.y}`).join(' ') + ` L${pts[pts.length-1].x},${H-pad} Z`;
+  canvas.innerHTML = `
+    <svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" width="100%">
+      <defs>
+        <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#D4AF37" stop-opacity=".25"/>
+          <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path d="${areaD}" fill="url(#chartGrad)"/>
+      <path d="${pathD}" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linejoin="round"/>
+      ${pts.map((p,i) => `
+        <circle cx="${p.x}" cy="${p.y}" r="4" fill="#D4AF37"/>
+        <text x="${p.x}" y="${H-6}" text-anchor="middle" font-size="9" fill="#748070" font-family="Montserrat">${labels[i]}</text>
+        <text x="${p.x}" y="${p.y-10}" text-anchor="middle" font-size="8" fill="#D4AF37" font-family="Montserrat">S/${(p.v/1000).toFixed(1)}k</text>
+      `).join('')}
+    </svg>
+  `;
+}
+
+// ══ SEARCH REAL TIME ══
+function initSearch() {
+  const inp = document.getElementById('search-global');
+  if(!inp) return;
+  inp.addEventListener('input', function() {
+    const q = this.value.toLowerCase().trim();
+    if(!q) { document.getElementById('search-results').style.display='none'; return; }
+    const items = [
+      {label:'Vestido Emerald Editorial',cat:'Boutique',action:()=>smoothScroll('boutique')},
+      {label:'Asesoría Personal de Imagen',cat:'Servicio',action:()=>smoothScroll('servicios')},
+      {label:'Masterclass Imagen Ejecutiva',cat:'Curso',action:()=>smoothScroll('cursos')},
+      {label:'Colorimetría Personal',cat:'Servicio',action:()=>smoothScroll('servicios')},
+      {label:'Blazer Oversize Atelier',cat:'Boutique',action:()=>smoothScroll('boutique')},
+      {label:'Personal Shopper Premium',cat:'Servicio',action:()=>smoothScroll('servicios')},
+      {label:'Blog: Dress Code Ejecutivo',cat:'Editorial',action:()=>smoothScroll('blog')},
+      {label:'Valentina Morales - CEO',cat:'Marca',action:()=>smoothScroll('ceo')},
+    ].filter(i => i.label.toLowerCase().includes(q));
+    const box = document.getElementById('search-results');
+    if(items.length === 0) { box.style.display='none'; return; }
+    box.style.display='block';
+    box.innerHTML = items.map(i =>
+      `<div class="search-result-item" onclick="this.closest('.search-wrap').querySelector('input').value='';document.getElementById('search-results').style.display='none';(${i.action.toString()})()">
+        <span>${i.label}</span><span class="chip chip-gray" style="font-size:8px">${i.cat}</span>
+      </div>`
+    ).join('');
+  });
+  document.addEventListener('click', e => {
+    if(!e.target.closest('.search-wrap')) document.getElementById('search-results').style.display='none';
+  });
+}
+
+// ══ POPUP VIP ══
+function showVipPopup() {
+  setTimeout(() => {
+    if(!localStorage.getItem('essence_popup_shown')) {
+      document.getElementById('popup-vip').style.display='flex';
+      localStorage.setItem('essence_popup_shown','1');
+    }
+  }, 8000);
+}
+function closePopup() {
+  document.getElementById('popup-vip').style.display='none';
+}
+function joinVip() {
+  closePopup();
+  smoothScroll('leads');
+}
+showVipPopup();
+
+// Run chart & calendar on init
+setTimeout(() => {
+  renderFinChart();
+  renderCalendar();
+  renderReservasList();
+  renderLookbooks();
+  initSearch();
+}, 100);
+</script>
+
+<!-- ══════════ EXTRA STYLES ══════════ -->
+<style>
+/* ══ IMAGEN UPLOAD ROWS ══ */
+.img-upload-row{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-bottom:1px solid var(--bo-border)}
+.img-upload-row:last-child{border-bottom:none}
+.img-upload-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--bo-muted)}
+.img-upload-area{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:12px;border:1.5px dashed var(--bo-border2);border-radius:6px;
+  cursor:pointer;transition:.2s;background:var(--bo-surface3);
+}
+.img-upload-area:hover{border-color:var(--dorado);background:rgba(212,175,55,.04)}
+.img-upload-preview{font-size:11px;color:var(--bo-muted);text-align:center}
+.img-upload-hint{font-size:9px;color:var(--bo-muted);letter-spacing:1px;text-align:center}
+
+/* ══ LIVE CLOCK WRAPPER ══ */
+#live-clock-wrap{
+  transition:opacity .3s;
+}
+#live-clock{
+  transition:opacity .1s;
+}
+
+/* ── DARK MODE ── */
+body.dark-mode #hero{filter:none}
+body.dark-mode #servicios,
+body.dark-mode #transformaciones,
+body.dark-mode #blog,
+body.dark-mode #testimonios{background:#141210!important}
+body.dark-mode #cursos{background:#0f0d0b!important}
+body.dark-mode .servicio-card,
+body.dark-mode .curso-card,
+body.dark-mode .blog-card,
+body.dark-mode .testimonio-card{background:#1a1816!important;color:var(--perla)!important}
+body.dark-mode .servicio-title,
+body.dark-mode .curso-title,
+body.dark-mode .blog-title,
+body.dark-mode .section-title{color:var(--perla)!important}
+body.dark-mode .section-desc,
+body.dark-mode .servicio-desc,
+body.dark-mode .curso-desc,
+body.dark-mode .blog-date{color:rgba(247,245,242,.5)!important}
+body.dark-mode #navbar.scrolled{background:rgba(20,18,16,.92)!important}
+body.dark-mode .nav-links a,
+body.dark-mode .btn-nav{color:var(--perla)!important}
+body.dark-mode .ceo-content{background:#141210!important}
+body.dark-mode #footer{background:#080806!important}
+
+/* ── DARK TOGGLE BTN ── */
+#dark-toggle{
+  position:fixed;bottom:100px;right:32px;z-index:90;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(0,75,62,.9);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;border:1px solid rgba(212,175,55,.3);
+  transition:.25s;color:var(--dorado);
+}
+#dark-toggle:hover{transform:scale(1.1);background:var(--verde)}
+
+/* ── QUIZ DE ESTILO ── */
+#modal-quiz,#modal-cliente,#modal-lookbook,#popup-vip{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(16px);
+  align-items:center;justify-content:center;
+}
+.quiz-box{
+  background:#111412;border:1px solid rgba(212,175,55,.15);
+  border-radius:6px;padding:48px 44px;
+  max-width:560px;width:92%;position:relative;
+}
+.quiz-header{margin-bottom:28px}
+.quiz-step-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--dorado);margin-bottom:12px}
+.quiz-progress-bar{height:2px;background:rgba(212,175,55,.15);border-radius:2px;overflow:hidden;margin-bottom:24px}
+.quiz-progress-fill{height:100%;background:var(--dorado);border-radius:2px;transition:width .4s cubic-bezier(.4,0,.2,1)}
+.quiz-question{
+  font-family:var(--font-serif);font-size:22px;font-weight:500;
+  color:var(--perla);line-height:1.4;margin-bottom:28px;
+}
+#quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quiz-opt{
+  padding:14px 16px;background:rgba(247,245,242,.04);
+  border:1px solid rgba(247,245,242,.08);border-radius:4px;
+  font-size:12px;color:var(--bo-text);cursor:pointer;
+  transition:all .2s;line-height:1.4;
+}
+.quiz-opt:hover{background:rgba(0,75,62,.3);border-color:rgba(212,175,55,.3);color:var(--perla)}
+.quiz-result-box{text-align:center;padding:8px 0}
+#quiz-result-title{
+  font-family:var(--font-display);font-size:26px;font-weight:400;
+  color:var(--dorado);margin-bottom:12px;letter-spacing:2px;
+}
+#quiz-result-desc{font-size:13px;line-height:1.8;color:rgba(247,245,242,.65);margin-bottom:28px}
+.btn-quiz-cta{
+  padding:12px 32px;background:var(--dorado);border:none;border-radius:2px;
+  font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--carbon);cursor:pointer;transition:.25s;
+}
+.btn-quiz-cta:hover{background:#b8961e}
+.modal-close-x{
+  position:absolute;top:16px;right:20px;background:none;border:none;
+  color:rgba(247,245,242,.3);font-size:20px;cursor:pointer;
+  line-height:1;padding:4px;transition:.2s;
+}
+.modal-close-x:hover{color:var(--perla)}
+
+/* ── QUIZ CTA SECTION ── */
+#quiz-section{background:var(--marfil);padding:80px 0;text-align:center}
+.quiz-cta-box{
+  max-width:640px;margin:0 auto;
+  border:1px solid rgba(0,75,62,.12);border-radius:4px;
+  padding:56px 48px;background:var(--blanco);
+}
+.quiz-cta-icon{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg, var(--verde), var(--verde-dark));
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 24px;
+}
+.quiz-cta-icon svg{width:28px;height:28px;color:var(--dorado)}
+.quiz-cta-title{
+  font-family:var(--font-display);font-size:32px;font-weight:400;
+  color:var(--verde);letter-spacing:2px;margin-bottom:12px;
+}
+.quiz-cta-desc{font-size:13px;line-height:1.8;color:var(--topo);margin-bottom:28px;font-weight:300}
+.btn-quiz{
+  padding:14px 36px;background:var(--verde);border:none;border-radius:2px;
+  font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--perla);cursor:pointer;transition:.25s;margin-right:12px;
+}
+.btn-quiz:hover{background:var(--verde-dark)}
+
+/* ── LOOKBOOK SECTION ── */
+#lookbook{background:var(--carbon);padding:100px 0}
+#lookbook .section-title{color:var(--perla)}
+.lookbook-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;margin-top:48px;background:rgba(247,245,242,.04);
+}
+.lookbook-card{cursor:pointer;position:relative;overflow:hidden}
+.lookbook-img{
+  aspect-ratio:3/4;background:center/cover no-repeat;
+  position:relative;transition:transform .5s cubic-bezier(.4,0,.2,1);
+}
+.lookbook-card:hover .lookbook-img{transform:scale(1.04)}
+.lookbook-tag{
+  position:absolute;top:16px;left:16px;
+  font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  background:rgba(212,175,55,.85);color:var(--carbon);
+  padding:4px 10px;border-radius:2px;
+}
+.lookbook-overlay{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,.5);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .3s;
+}
+.lookbook-card:hover .lookbook-overlay{opacity:1}
+.lookbook-dl-icon{text-align:center}
+.lookbook-info{padding:16px 12px;background:#161614}
+.lookbook-title{
+  font-family:var(--font-serif);font-size:15px;font-weight:400;
+  color:var(--perla);line-height:1.3;
+}
+
+/* ── CALENDARIO ── */
+#calendario-section{background:var(--marfil);padding:100px 0}
+.calendario-wrap{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+.cal-box{
+  background:var(--blanco);border-radius:4px;overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,75,62,.08);
+}
+.cal-header{
+  background:var(--verde);padding:18px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cal-titulo{
+  font-family:var(--font-serif);font-size:18px;font-weight:500;
+  color:var(--perla);letter-spacing:1px;
+}
+.cal-nav-btn{
+  background:none;border:none;color:rgba(247,245,242,.6);
+  font-size:18px;cursor:pointer;padding:4px 8px;
+  transition:.2s;border-radius:2px;
+}
+.cal-nav-btn:hover{color:var(--dorado);background:rgba(212,175,55,.1)}
+.cal-days-header{display:grid;grid-template-columns:repeat(7,1fr);padding:10px 12px 0}
+.cal-day-name{text-align:center;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--topo);padding:6px 0;text-transform:uppercase}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);padding:4px 12px 16px;gap:2px}
+.cal-day{
+  aspect-ratio:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;font-size:12px;font-weight:500;color:var(--carbon);
+  border-radius:50%;cursor:pointer;transition:.2s;position:relative;font-family:var(--font-sans);
+}
+.cal-day:hover:not(.empty):not(.past){background:rgba(0,75,62,.08);color:var(--verde)}
+.cal-day.today{background:var(--verde);color:var(--perla)!important;font-weight:700}
+.cal-day.selected{background:var(--dorado)!important;color:var(--carbon)!important}
+.cal-day.past{color:rgba(30,30,30,.25);cursor:default}
+.cal-day.has-reserva{font-weight:700;color:var(--verde)}
+.cal-dot{position:absolute;bottom:3px;width:4px;height:4px;border-radius:50%;background:var(--dorado)}
+#selected-date-label{font-size:11px;color:var(--topo);padding:10px 20px;display:none}
+#reserva-form-box{
+  border-top:1px solid var(--marfil);
+  padding:16px 20px;background:var(--perla);display:none;
+}
+.reserva-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.reserva-inp{
+  padding:9px 12px;border:1px solid rgba(0,75,62,.15);border-radius:3px;
+  font-family:var(--font-sans);font-size:12px;color:var(--carbon);outline:none;background:var(--blanco);
+}
+.reserva-inp:focus{border-color:var(--verde)}
+.btn-save-reserva{
+  width:100%;padding:10px;background:var(--verde);border:none;border-radius:2px;
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--perla);cursor:pointer;transition:.25s;font-family:var(--font-sans);
+}
+.btn-save-reserva:hover{background:var(--verde-dark)}
+.reservas-box{
+  background:var(--blanco);border-radius:4px;padding:24px;
+  box-shadow:0 4px 24px rgba(0,75,62,.08);
+}
+.reservas-box-title{
+  font-family:var(--font-serif);font-size:20px;font-weight:500;
+  color:var(--verde);margin-bottom:16px;
+}
+@media(max-width:768px){
+  .calendario-wrap{grid-template-columns:1fr}
+  .lookbook-grid{grid-template-columns:repeat(2,1fr)}
+  #quiz-opts{grid-template-columns:1fr}
+  .quiz-box{padding:28px 20px}
+  .quiz-cta-box{padding:36px 24px}
+}
+
+/* ── CLIENTE MODAL ── */
+.cliente-box{
+  background:#111412;border:1px solid rgba(212,175,55,.15);
+  border-radius:6px;padding:40px;max-width:520px;width:92%;position:relative;
+}
+.cliente-box-title{
+  font-family:var(--font-head);font-size:17px;font-weight:700;
+  color:var(--bo-text);margin-bottom:20px;
+}
+
+/* ── POPUP VIP ── */
+.popup-box{
+  background:#0d0f0e;border:1px solid rgba(212,175,55,.2);
+  border-radius:6px;padding:56px 48px;max-width:460px;width:92%;
+  text-align:center;position:relative;
+  background-image:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,75,62,.4) 0%, transparent 70%);
+}
+.popup-eyebrow{
+  font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--dorado);margin-bottom:12px;
+}
+.popup-title{
+  font-family:var(--font-display);font-size:32px;font-weight:400;
+  color:var(--perla);letter-spacing:3px;line-height:1.1;margin-bottom:12px;
+}
+.popup-title em{font-style:italic;color:var(--dorado)}
+.popup-desc{font-size:12px;line-height:1.8;color:rgba(247,245,242,.55);margin-bottom:28px}
+.btn-popup{
+  padding:12px 28px;background:var(--dorado);border:none;border-radius:2px;
+  font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--carbon);cursor:pointer;transition:.25s;margin-right:8px;
+}
+.btn-popup:hover{background:#b8961e}
+.btn-popup-ghost{
+  padding:12px 20px;background:transparent;border:none;
+  font-size:10px;color:rgba(247,245,242,.3);cursor:pointer;
+  letter-spacing:1px;transition:.2s;
+}
+.btn-popup-ghost:hover{color:var(--perla)}
+
+/* ── SEARCH BAR ── */
+.search-wrap{position:relative;margin:0 48px 0;display:flex;justify-content:center;padding:40px 0 0}
+.search-bar{
+  display:flex;align-items:center;gap:12px;
+  background:var(--blanco);border:1px solid rgba(0,75,62,.12);
+  border-radius:40px;padding:12px 24px;max-width:520px;width:100%;
+  box-shadow:0 4px 20px rgba(0,75,62,.06);
+}
+.search-bar svg{width:16px;height:16px;color:var(--topo);flex-shrink:0}
+#search-global{
+  border:none;outline:none;font-family:var(--font-sans);
+  font-size:13px;color:var(--carbon);background:transparent;flex:1;
+  letter-spacing:.3px;
+}
+#search-global::placeholder{color:var(--topo);font-size:12px}
+#search-results{
+  display:none;position:absolute;top:calc(100% - 12px);left:50%;transform:translateX(-50%);
+  background:var(--blanco);border:1px solid rgba(0,75,62,.1);border-radius:8px;
+  box-shadow:0 8px 32px rgba(0,0,0,.1);width:100%;max-width:520px;z-index:50;overflow:hidden;
+}
+.search-result-item{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 20px;cursor:pointer;font-size:12px;color:var(--carbon);
+  transition:.15s;border-bottom:1px solid rgba(0,75,62,.06);
+}
+.search-result-item:last-child{border-bottom:none}
+.search-result-item:hover{background:rgba(0,75,62,.04)}
+
+/* ── BO CALENDARIO ── */
+#page-calendario .cal-day{color:var(--bo-text)!important}
+#page-calendario .cal-day.today{background:var(--verde)!important;color:var(--perla)!important}
+#page-calendario .cal-day.selected{background:var(--dorado)!important;color:var(--carbon)!important}
+#page-calendario .cal-day:hover:not(.empty):not(.past){background:rgba(0,75,62,.2)!important}
+#page-calendario .cal-day.past{color:var(--bo-muted)!important}
+#page-calendario .cal-day-name{color:var(--bo-muted)!important}
+#page-calendario .cal-box{background:var(--bo-surface)!important;box-shadow:none!important}
+#page-calendario .reservas-box{background:var(--bo-surface)!important;box-shadow:none!important}
+#page-calendario .reservas-box-title{color:var(--dorado)!important}
+#page-calendario #selected-date-label{color:var(--bo-muted)!important}
+#page-calendario #reserva-form-box{background:var(--bo-surface2)!important;border-top-color:var(--bo-border)!important}
+#page-calendario .reserva-inp{background:var(--bo-surface3)!important;border-color:var(--bo-border2)!important;color:var(--bo-text)!important}
+#page-calendario .lookbook-grid{display:none}
+
+/* ── BO FIN CHART ── */
+.fin-chart-wrap{
+  background:var(--bo-surface);border:1px solid var(--bo-border);
+  border-radius:8px;padding:20px;margin-bottom:18px;
+}
+.fin-chart-title{font-size:13px;font-weight:700;color:var(--bo-text);font-family:var(--font-head);margin-bottom:16px}
+
+/* ── LOOKBOOK BO ── */
+#page-lookbook .lookbook-grid{grid-template-columns:repeat(3,1fr)}
+#page-lookbook .lookbook-img{aspect-ratio:4/3}
+#page-lookbook .lookbook-info{background:var(--bo-surface2)}
+#page-lookbook .lookbook-title{color:var(--bo-text)}
+
+/* ── EXTRA NAV LINKS ── */
+.bo-link-sub{padding-left:36px;font-size:11px}
+
+/* ── NEWSLETTER INLINE ── */
+.newsletter-wrap{
+  background:rgba(0,75,62,.06);border:1px solid rgba(0,75,62,.1);
+  border-radius:4px;padding:32px 40px;margin-top:48px;
+  display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;
+}
+.newsletter-text{}
+.newsletter-title{
+  font-family:var(--font-serif);font-size:22px;font-weight:500;color:var(--carbon);margin-bottom:4px;
+}
+.newsletter-sub{font-size:12px;color:var(--topo);font-weight:300}
+.newsletter-form{display:flex;gap:0;flex:1;min-width:260px;max-width:420px}
+.newsletter-input{
+  flex:1;padding:12px 18px;
+  border:1px solid rgba(0,75,62,.18);border-right:none;border-radius:2px 0 0 2px;
+  font-family:var(--font-sans);font-size:12px;color:var(--carbon);outline:none;
+  background:var(--blanco);
+}
+.newsletter-btn{
+  padding:12px 22px;background:var(--verde);border:none;
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--perla);cursor:pointer;border-radius:0 2px 2px 0;transition:.25s;
+  font-family:var(--font-sans);white-space:nowrap;
+}
+.newsletter-btn:hover{background:var(--verde-dark)}
+@media(max-width:768px){.newsletter-wrap{flex-direction:column}.newsletter-form{width:100%;max-width:100%}}
+</style>
+
+<!-- ══════════ EXTRA HTML: Secciones adicionales antes del footer ══════════ -->
+<script>
+// Inject extra sections into frontend
+document.addEventListener('DOMContentLoaded', function() {
+  const footer = document.getElementById('footer');
+  if(!footer) return;
+
+  // ── SEARCH BAR (insert after navbar, before hero, inside frontend) ──
+  // We add it as a floating search into the hero
+  const heroContent = document.querySelector('.hero-content');
+  if(heroContent) {
+    const sw = document.createElement('div');
+    sw.className = 'search-wrap';
+    sw.style.cssText = 'position:absolute;bottom:120px;left:0;right:0;z-index:3;padding:0 24px';
+    sw.innerHTML = `
+      <div class="search-bar" style="margin:0 auto">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="search-global" placeholder="Buscar servicios, productos, cursos..."/>
+      </div>
+      <div id="search-results"></div>`;
+    document.getElementById('hero').appendChild(sw);
+    setTimeout(initSearch, 300);
+  }
+
+  // ── QUIZ SECTION ──
+  const quizSection = document.createElement('section');
+  quizSection.id = 'quiz-section';
+  quizSection.innerHTML = `
+    <div class="container">
+      <div class="quiz-cta-box reveal">
+        <div class="quiz-cta-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
+        </div>
+        <div class="quiz-cta-title">¿Cuál es tu estilo?</div>
+        <p class="quiz-cta-desc">Responde 5 preguntas y descubre tu perfil de estilo personal. Recibirás recomendaciones exclusivas de Valentina para tu transformación.</p>
+        <button class="btn-quiz" onclick="openQuiz()">Hacer el Quiz de Estilo →</button>
+        <button class="btn-nav" onclick="openWhatsApp('Hola, quiero saber cuál es mi estilo de imagen.')" style="display:inline-block">Preguntar a Valentina</button>
+      </div>
+    </div>`;
+  footer.parentNode.insertBefore(quizSection, footer);
+
+  // ── LOOKBOOK SECTION ──
+  const lookSection = document.createElement('section');
+  lookSection.id = 'lookbook';
+  lookSection.innerHTML = `
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label" style="justify-content:center;margin-bottom:8px"><span></span>Lookbooks Digitales<span style="display:inline-block;width:32px;height:1px;background:var(--dorado)"></span></div>
+        <h2 class="section-title" style="color:var(--perla);text-align:center">Descarga Nuestros<br><em>Lookbooks</em></h2>
+        <p class="section-desc" style="color:rgba(247,245,242,.55);text-align:center;max-width:100%;margin-top:12px">Guías editoriales de estilo descargables. Curadas por Valentina.</p>
+      </div>
+      <div id="lookbook-grid" class="lookbook-grid reveal" style="transition-delay:.1s"></div>
+    </div>`;
+  footer.parentNode.insertBefore(lookSection, footer);
+
+  // ── CALENDARIO DE RESERVAS PÚBLICO ──
+  const calSection = document.createElement('section');
+  calSection.id = 'calendario-section';
+  calSection.innerHTML = `
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Agenda tu Sesión</div>
+        <h2 class="section-title">Calendario de<br><em>Reservas</em></h2>
+        <p class="section-desc">Selecciona tu fecha ideal y reserva tu asesoría privada con Valentina.</p>
+        <div id="live-clock-wrap" style="display:inline-flex;align-items:center;gap:18px;margin-top:20px;padding:14px 28px;background:rgba(0,75,62,.06);border:1px solid rgba(0,75,62,.12);border-radius:40px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--dorado)" stroke-width="1.5" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span id="live-clock" style="font-family:var(--font-mono);font-size:18px;font-weight:500;color:var(--verde);letter-spacing:2px">--:--:--</span>
+          </div>
+          <div style="width:1px;height:20px;background:rgba(0,75,62,.15)"></div>
+          <span id="live-date" style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--topo)">---</span>
+        </div>
+      </div>
+      <div class="calendario-wrap reveal" style="transition-delay:.1s">
+        <div class="cal-box">
+          <div class="cal-header">
+            <button class="cal-nav-btn" onclick="calPrev()">‹</button>
+            <div class="cal-titulo" id="cal-titulo">Mayo 2026</div>
+            <button class="cal-nav-btn" onclick="calNext()">›</button>
+          </div>
+          <div id="cal-grid"></div>
+          <div id="selected-date-label"></div>
+          <div id="reserva-form-box">
+            <input type="hidden" id="reserva-fecha-hidden"/>
+            <div class="reserva-row">
+              <input class="reserva-inp" id="reserva-nombre" placeholder="Tu nombre completo"/>
+              <input class="reserva-inp" id="reserva-hora" type="time" value="10:00"/>
+            </div>
+            <select class="reserva-inp" id="reserva-servicio" style="width:100%;margin-bottom:10px">
+              <option>Asesoría Personal de Imagen</option>
+              <option>Personal Shopper</option>
+              <option>Imagen Ejecutiva</option>
+              <option>Colorimetría</option>
+              <option>Asesoría para Eventos</option>
+            </select>
+            <button class="btn-save-reserva" onclick="saveReserva()">Confirmar Reserva →</button>
+          </div>
+        </div>
+        <div class="reservas-box">
+          <div class="reservas-box-title">Próximas Reservas</div>
+          <div id="reservas-list"><div style="color:var(--topo);font-size:12px">No hay reservas registradas aún.</div></div>
+          <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(0,75,62,.08)">
+            <div class="section-label" style="font-size:9px;margin-bottom:12px">Horarios disponibles</div>
+            ${['9:00 AM','10:30 AM','12:00 PM','3:00 PM','5:00 PM'].map(h=>`<div style="display:inline-block;padding:6px 14px;margin:4px;border:1px solid rgba(0,75,62,.15);border-radius:40px;font-size:11px;color:var(--verde);cursor:pointer;font-weight:500" onclick="document.getElementById('reserva-hora').value='${h.replace(' AM','').replace(' PM','')}'">${h}</div>`).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="newsletter-wrap reveal" style="transition-delay:.2s">
+        <div class="newsletter-text">
+          <div class="newsletter-title">Recibe inspiración editorial</div>
+          <div class="newsletter-sub">Tips de estilo, novedades de la boutique y acceso anticipado a talleres.</div>
+        </div>
+        <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+          <input class="newsletter-input" type="email" placeholder="tu@correo.com" required/>
+          <button type="submit" class="newsletter-btn">Suscribirse</button>
+        </form>
+      </div>
+    </div>`;
+  footer.parentNode.insertBefore(calSection, footer);
+
+  // Re-run reveals
+  setTimeout(initReveal, 200);
+  setTimeout(()=>{renderCalendar();renderReservasList();renderLookbooks();}, 300);
+});
+
+function subscribeNewsletter(e) {
+  e.preventDefault();
+  const email = e.target.querySelector('input').value;
+  showNotif('✓ Newsletter','Bienvenida a ESSENCE, ' + email);
+  e.target.reset();
+}
+</script>
+
+<!-- ══════════ MODALS ══════════ -->
+
+<!-- QUIZ MODAL -->
+<div id="modal-quiz">
+  <div class="quiz-box">
+    <button class="modal-close-x" onclick="closeQuiz()">×</button>
+    <div class="quiz-header">
+      <div class="quiz-step-label" id="quiz-step">1 / 5</div>
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quiz-progress" style="width:0%"></div></div>
+    </div>
+    <div id="quiz-q-block">
+      <div class="quiz-question" id="quiz-q">¿Cómo describirías tu estilo actual?</div>
+      <div id="quiz-opts"></div>
+    </div>
+    <div id="quiz-result" class="quiz-result-box" style="display:none">
+      <div id="quiz-result-title">Tu perfil de estilo</div>
+      <p id="quiz-result-desc"></p>
+      <button class="btn-quiz-cta" onclick="closeQuiz();smoothScroll('leads')">Agendar mi Asesoría →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENTE MODAL (backoffice) -->
+<div id="modal-cliente">
+  <div class="cliente-box">
+    <button class="modal-close-x" onclick="closeClienteModal()">×</button>
+    <div class="cliente-box-title">Nuevo Cliente</div>
+    <div class="bo-form-grid">
+      <div class="bo-form-field"><label class="bo-label">Nombre</label><input class="bo-input" id="nc-name" placeholder="Nombre completo"/></div>
+      <div class="bo-form-field"><label class="bo-label">Celular</label><input class="bo-input" id="nc-cel" placeholder="+51 999 999 999"/></div>
+      <div class="bo-form-field"><label class="bo-label">Email</label><input class="bo-input" id="nc-email" type="email" placeholder="correo@mail.com"/></div>
+      <div class="bo-form-field"><label class="bo-label">Instagram</label><input class="bo-input" id="nc-ig" placeholder="@usuario"/></div>
+      <div class="bo-form-field"><label class="bo-label">Ciudad</label><input class="bo-input" id="nc-ciudad" placeholder="Lima"/></div>
+      <div class="bo-form-field"><label class="bo-label">Categoría</label>
+        <select class="bo-select bo-input" id="nc-cat"><option>Nueva</option><option>Activa</option><option>VIP</option></select>
+      </div>
+      <div class="bo-form-field full"><label class="bo-label">Notas Privadas</label><textarea class="bo-input" id="nc-notas" rows="2" style="resize:none" placeholder="Preferencias, tallas, historial..."></textarea></div>
+      <div class="bo-form-field full" style="flex-direction:row;gap:10px">
+        <button class="bb bb-primary" onclick="saveCliente()">Guardar Cliente</button>
+        <button class="bb bb-ghost" onclick="closeClienteModal()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP VIP -->
+<div id="popup-vip">
+  <div class="popup-box">
+    <button class="modal-close-x" onclick="closePopup()" style="top:12px;right:16px">×</button>
+    <div class="popup-eyebrow">Acceso Exclusivo</div>
+    <div class="popup-title">Únete al<br><em>Club ESSENCE</em></div>
+    <p class="popup-desc">Sé la primera en conocer nuevas colecciones, talleres privados y contenido editorial exclusivo. Solo para miembros selectos.</p>
+    <button class="btn-popup" onclick="joinVip()">Quiero Acceso VIP →</button>
+    <button class="btn-popup-ghost" onclick="closePopup()">Ahora no</button>
+  </div>
+</div>
+
+<!-- DARK MODE TOGGLE -->
+<button id="dark-toggle" onclick="toggleDark()" title="Cambiar modo">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+
+<!-- ══════ BACKOFFICE: Agregar módulos faltantes ══════ -->
+<script>
+// Inject additional BO pages after DOM ready
+document.addEventListener('DOMContentLoaded', function() {
+  const boMain = document.getElementById('bo-main');
+  if(!boMain) return;
+
+  // ── Calendario BO page ──
+  const calPage = document.createElement('div');
+  calPage.className = 'bo-page';
+  calPage.id = 'page-calendario';
+  calPage.innerHTML = `
+    <div class="bo-page-header">
+      <div><div class="bo-page-title">Calendario de Reservas</div><div class="bo-page-sub">Gestión de agenda y citas</div></div>
+      <div class="bo-actions">
+        <div id="bo-live-clock" style="display:flex;align-items:center;gap:8px;padding:7px 14px;background:var(--bo-surface2);border:1px solid var(--bo-border2);border-radius:6px;font-family:var(--font-mono);font-size:13px;color:var(--dorado);letter-spacing:2px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="bo-clock-time">--:--:--</span>
+          <span style="color:var(--bo-muted);font-size:10px;letter-spacing:1px" id="bo-clock-date"></span>
+        </div>
+        <button class="bb bb-outline" onclick="exportReservas()">Exportar CSV</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+      <div class="bo-table-wrap" style="padding:0;overflow:hidden">
+        <div class="cal-header" style="background:var(--bo-surface2);border-bottom:1px solid var(--bo-border)">
+          <button class="cal-nav-btn" onclick="calPrev()">‹</button>
+          <div class="cal-titulo" id="cal-titulo" style="color:var(--bo-text)">Mayo 2026</div>
+          <button class="cal-nav-btn" onclick="calNext()">›</button>
+        </div>
+        <div id="cal-grid" style="background:var(--bo-surface)"></div>
+        <div id="selected-date-label" style="padding:10px 20px;font-size:11px;color:var(--bo-muted);display:none"></div>
+        <div id="reserva-form-box" style="border-top:1px solid var(--bo-border);padding:16px 20px;background:var(--bo-surface2);display:none">
+          <input type="hidden" id="reserva-fecha-hidden"/>
+          <div class="reserva-row">
+            <input class="reserva-inp bo-input" id="reserva-nombre" placeholder="Nombre del cliente" style="background:var(--bo-surface3);border-color:var(--bo-border2);color:var(--bo-text)"/>
+            <input class="reserva-inp bo-input" id="reserva-hora" type="time" value="10:00" style="background:var(--bo-surface3);border-color:var(--bo-border2);color:var(--bo-text)"/>
+          </div>
+          <select class="reserva-inp bo-input bo-select" id="reserva-servicio" style="width:100%;margin-bottom:10px;background:var(--bo-surface3);border-color:var(--bo-border2);color:var(--bo-text)">
+            <option>Asesoría Personal de Imagen</option><option>Personal Shopper</option><option>Imagen Ejecutiva</option><option>Colorimetría</option><option>Asesoría para Eventos</option>
+          </select>
+          <button class="btn-save-reserva bb bb-primary" onclick="saveReserva()" style="width:100%;justify-content:center;border-radius:5px">Guardar Reserva</button>
+        </div>
+      </div>
+      <div>
+        <div class="bo-table-wrap" style="padding:20px">
+          <div class="bo-table-title" style="margin-bottom:14px">Próximas Citas</div>
+          <div id="reservas-list"></div>
+        </div>
+      </div>
+    </div>`;
+  boMain.appendChild(calPage);
+
+  // ── Lookbook BO page ──
+  const lbPage = document.createElement('div');
+  lbPage.className = 'bo-page';
+  lbPage.id = 'page-lookbook';
+  lbPage.innerHTML = `
+    <div class="bo-page-header">
+      <div><div class="bo-page-title">Lookbooks</div><div class="bo-page-sub">Gestión de lookbooks digitales</div></div>
+      <div class="bo-actions"><button class="bb bb-primary" onclick="showNotif('Nuevo Lookbook','Función de subida disponible próximamente.')">+ Subir Lookbook</button></div>
+    </div>
+    <div id="lookbook-grid" class="lookbook-grid" style="grid-template-columns:repeat(3,1fr)"></div>`;
+  boMain.appendChild(lbPage);
+
+  // ── Finance Chart BO ──
+  const finPage = document.getElementById('page-finanzas');
+  if(finPage) {
+    const chartDiv = document.createElement('div');
+    chartDiv.className = 'fin-chart-wrap';
+    chartDiv.innerHTML = `<div class="fin-chart-title">Ingresos Mensuales (últimos 6 meses)</div><div id="fin-chart-svg"></div>`;
+    finPage.insertBefore(chartDiv, finPage.querySelector('.fin-grid'));
+  }
+
+  // ── Add nav links ──
+  const boNav = document.getElementById('bo-nav');
+  const boBottom = boNav ? boNav.querySelector('.bo-bottom') : null;
+  if(boBottom && boNav) {
+    const calLink = document.createElement('div');
+    calLink.className = 'bo-link';
+    calLink.onclick = function(){ boPage('calendario'); this.closest('#bo-nav').querySelectorAll('.bo-link').forEach(l=>l.classList.remove('active')); this.classList.add('active'); };
+    calLink.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Calendario</span>`;
+    const lbLink = document.createElement('div');
+    lbLink.className = 'bo-link';
+    lbLink.onclick = function(){ boPage('lookbook'); this.closest('#bo-nav').querySelectorAll('.bo-link').forEach(l=>l.classList.remove('active')); this.classList.add('active'); renderLookbooks(); };
+    lbLink.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg><span>Lookbooks</span>`;
+    // Insert before bo-bottom
+    const contenidoLink = boNav.querySelector('[onclick*="contenido"]');
+    if(contenidoLink) {
+      contenidoLink.parentNode.insertBefore(calLink, contenidoLink);
+      contenidoLink.parentNode.insertBefore(lbLink, contenidoLink);
+    }
+  }
+
+  setTimeout(()=>{ renderFinChart(); renderCalendar(); renderReservasList(); renderLookbooks(); }, 400);
+});
+
+function exportReservas() {
+  if(reservas.length===0){showNotif('Sin datos','No hay reservas para exportar.');return;}
+  const h=['Nombre','Servicio','Fecha','Hora'];
+  const rows = reservas.map(r=>[r.nombre,r.servicio,r.fecha,r.hora].join(','));
+  const csv=[h.join(','),...rows].join('\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download='essence_reservas.csv';a.click();
+}
+</script>
+
+</body>
+</html>
